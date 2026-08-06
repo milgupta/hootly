@@ -1,0 +1,206 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+/* Design tokens — docs/03 §9, mapped into Tailwind v4 @theme */
+@theme {
+  --color-bg: #ffffff;
+  --color-bg-subtle: #fafafc;
+  --color-surface: #ffffff;
+  --color-border: #eaeaf0;
+  --color-ink: #17171c;
+  --color-ink-2: #5c5c6b;
+  --color-ink-3: #9494a6;
+  --color-primary: #7c3aed;
+  --color-primary-hover: #6d28d9;
+  --color-primary-soft: #f3eefd;
+  --color-primary-border: #ddd0f9;
+  --color-danger: #dc2626;
+  --color-danger-soft: #fef1f1;
+  --color-success: #188a4c;
+  --color-success-soft: #ebf7f0;
+  --color-warning: #b45309;
+  --color-warning-soft: #fdf5ec;
+  --color-info: #1d5bd6;
+  --color-info-soft: #eef4fe;
+
+  --radius-ctl: 10px;
+  --radius-card: 16px;
+  --radius-modal: 20px;
+  --radius-hero: 24px;
+
+  --shadow-xs: 0 1px 2px rgb(23 23 28 / 5%);
+  --shadow-md: 0 4px 12px rgb(23 23 28 / 7%);
+  --shadow-lg: 0 12px 32px rgb(23 23 28 / 10%);
+
+  --ease-brand: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --t-fast: 150ms;
+  --t-med: 200ms;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+/* Typography scale — docs/03 §2 */
+.text-display { font-size: 44px; line-height: 52px; font-weight: 700; letter-spacing: -0.02em; }
+.text-h1 { font-size: 28px; line-height: 36px; font-weight: 700; letter-spacing: -0.01em; }
+.text-h2 { font-size: 20px; line-height: 28px; font-weight: 600; }
+.text-h3 { font-size: 16px; line-height: 24px; font-weight: 600; }
+.text-body { font-size: 15px; line-height: 24px; font-weight: 400; }
+.text-body-strong { font-size: 15px; line-height: 24px; font-weight: 600; }
+.text-small { font-size: 13px; line-height: 20px; }
+.text-micro { font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.02em; }
+
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* Reading measure — the #1 vibecoded tell is full-width paragraphs */
+.reading-measure { max-width: 68ch; }
+
+/* Gradients — the only three allowed (docs/03 §1) */
+.gradient-hero-glow { background: radial-gradient(60% 50% at 50% 0%, #f3eefd 0%, transparent 70%); }
+.gradient-card-sheen { background: linear-gradient(180deg, #fdfcff 0%, #f7f4fe 100%); }
+.gradient-button-depth { background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%); }
+
+/* Focus ring — 2px primary at 2px offset, always visible on keyboard nav */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Skeleton shimmer — 1.2s linear */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f2f2f6 25%, #fafafc 50%, #f2f2f6 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.2s linear infinite;
+  border-radius: 8px;
+}
+
+/* Card flip (flashcards) — 300ms 3D flip on Y */
+.flip-container { perspective: 1200px; }
+.flip-inner {
+  transition: transform 300ms var(--ease);
+  transform-style: preserve-3d;
+  position: relative;
+}
+.flip-inner.flipped { transform: rotateY(180deg); }
+.flip-face {
+  backface-visibility: hidden;
+  position: absolute;
+  inset: 0;
+}
+.flip-face.back { transform: rotateY(180deg); }
+
+/* Typewriter caret for generation theater */
+@keyframes caret-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.typewriter-caret::after { content: "▏"; color: var(--color-primary); animation: caret-blink 1s step-end infinite; }
+
+/* Checkmark pop — 150ms spring */
+@keyframes check-pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.check-pop { animation: check-pop 150ms var(--ease); }
+
+/* Fade-in for streaming words / list items */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up { animation: fade-in-up 200ms var(--ease) both; }
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.fade-in { animation: fade-in 200ms var(--ease) both; }
+
+/* Modal enter: fade + scale 0.98 -> 1, 180ms */
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+.modal-in { animation: modal-in 180ms var(--ease) both; }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.toast-in { animation: toast-in 200ms var(--ease) both; }
+
+/* Ollie animations */
+@keyframes ollie-blink {
+  0%, 96%, 100% { transform: scaleY(1); }
+  97%, 99% { transform: scaleY(0.1); }
+}
+.ollie-eye { transform-origin: center; animation: ollie-blink 7s linear infinite; }
+@keyframes ollie-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(8deg); }
+}
+.ollie-thinking { animation: ollie-tilt 2.4s var(--ease) infinite; transform-origin: 50% 80%; }
+@keyframes ollie-dot {
+  0%, 60%, 100% { opacity: 0.25; }
+  30% { opacity: 1; }
+}
+.ollie-dot { animation: ollie-dot 1.2s linear infinite; }
+.ollie-dot:nth-child(2) { animation-delay: 0.2s; }
+.ollie-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes wing-flap {
+  0% { transform: rotate(0); }
+  40% { transform: rotate(-24deg); }
+  100% { transform: rotate(0); }
+}
+.ollie-wing-flap { animation: wing-flap 600ms var(--ease) 1; transform-origin: 20% 20%; }
+@keyframes sparkle-pop {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1.15) rotate(20deg); opacity: 1; }
+  100% { transform: scale(1) rotate(30deg); opacity: 0; }
+}
+.ollie-sparkle { animation: sparkle-pop 600ms var(--ease) 1 both; }
+
+/* Reduced motion: everything becomes opacity-only 100ms (docs/03 §5) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 100ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 100ms !important;
+    transition-property: opacity !important;
+  }
+  .skeleton { animation: none; }
+  .flip-inner { transition: none; }
+}
+
+/* KaTeX sizing inside notes */
+.katex { font-size: 1.05em; }
+
+/* Notes prose (react-markdown output) */
+.prose-notes h3 { font-size: 16px; line-height: 24px; font-weight: 600; margin: 20px 0 8px; }
+.prose-notes p { margin: 8px 0; }
+.prose-notes strong { font-weight: 600; }
+.prose-notes ul, .prose-notes ol { padding-left: 22px; margin: 8px 0; }
+.prose-notes ul { list-style: disc; }
+.prose-notes ol { list-style: decimal; }
+.prose-notes li { margin: 4px 0; }
+.prose-notes table { border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+.prose-notes th, .prose-notes td { border: 1px solid var(--color-border); padding: 8px 12px; text-align: left; }
+.prose-notes th { background: var(--color-bg-subtle); font-weight: 600; }
+.prose-notes code { font-family: var(--font-mono); font-size: 13px; background: var(--color-bg-subtle); border: 1px solid var(--color-border); border-radius: 4px; padding: 1px 5px; }
+.prose-notes pre { background: var(--color-bg-subtle); border: 1px solid var(--color-border); border-radius: 10px; padding: 14px 16px; overflow-x: auto; margin: 12px 0; }
+.prose-notes pre code { border: none; background: none; padding: 0; }
+.prose-notes blockquote { border-left: 3px solid var(--color-primary-border); padding-left: 14px; color: var(--color-ink-2); margin: 12px 0; }
