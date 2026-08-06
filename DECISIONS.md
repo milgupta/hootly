@@ -48,3 +48,5 @@
 - limit_meter_viewed fires from the Meter component itself (once per mount) when it renders at ≤20% remaining, so every metered surface reports it without per-call-site wiring; decorative meters omit the `metric` prop and stay silent.
 - error_shown is emitted by a headless <ErrorTracker errorCode> component dropped into error surfaces (route error boundaries use "unhandled_error"; job/ingest surfaces pass their docs/04 §9 code); the imperative reportErrorShown() covers toast paths.
 - share_link_created / share_link_opened stay unwired: /s/[slug] sharing is P1 (docs/05 §7, 04 §7 "route reserved") and no shipped surface creates a link. The typed events exist so wiring is a one-liner when P1 lands.
+- Ship-gate fix (gate item 10): 10 routes shipped without an error.tsx and 6 without a loading.tsx; added both everywhere via a shared components/ui/RouteError.tsx using the docs/05 §11 500 copy, and hand-matched skeletons per route so there's no layout shift.
+- Skeleton gained an optional `style` prop so a skeleton can match a real element's measured width exactly (tab labels, nav items) rather than approximating with a Tailwind width class.

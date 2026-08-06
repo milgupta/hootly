@@ -24,7 +24,9 @@ export interface GuardrailResult {
 
 /** Obvious non-course patterns — cheap prefilter (docs/06 §3). */
 const SUSPICIOUS = [
-  /write (?:my|me|an?|the)\s+(essay|paper|assignment|homework|cover letter|application)/i,
+  // "write me an essay" needs the optional indirect object before the determiner,
+  // otherwise the most common phrasing of all slips past the prefilter.
+  /write\s+(?:me\s+|us\s+)?(?:my|an?|the|this)\s+(essay|paper|assignment|homework|cover letter|application)/i,
   /do (?:my|this) (homework|assignment|essay|lab report)/i,
   /for my (girlfriend|boyfriend|tinder|dating|bio)\b/i,
   /\b(tinder|instagram caption|dating profile)\b/i,

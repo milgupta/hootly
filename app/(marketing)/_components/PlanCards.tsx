@@ -34,12 +34,14 @@ export function PlanCards({ interval }: { interval: Interval }) {
             </li>
           ))}
         </ul>
-        <Link
-          href="/signup"
-          className="focus-ring mt-8 inline-flex h-10 items-center justify-center rounded-ctl border border-border bg-surface px-4 text-[15px] font-semibold text-ink transition-all duration-150 hover:border-primary-border hover:shadow-md active:scale-[0.98]"
-        >
-          Start free
-        </Link>
+        <div className="mt-auto pt-8">
+          <Link
+            href="/signup"
+            className="focus-ring flex h-10 items-center justify-center rounded-ctl border border-border bg-surface px-4 text-[15px] font-semibold text-ink transition-all duration-150 hover:border-primary-border hover:shadow-md active:scale-[0.98]"
+          >
+            Start free
+          </Link>
+        </div>
       </Card>
 
       {/* Plus */}
@@ -69,12 +71,14 @@ export function PlanCards({ interval }: { interval: Interval }) {
             </li>
           ))}
         </ul>
-        <Link
-          href={`/signup?plan=plus&interval=${interval}`}
-          className="gradient-button-depth focus-ring mt-8 inline-flex h-10 items-center justify-center rounded-ctl px-4 text-[15px] font-semibold text-white transition-all duration-150 hover:-translate-y-px hover:shadow-md active:translate-y-0 active:scale-[0.98]"
-        >
-          Get Plus
-        </Link>
+        <div className="mt-auto pt-8">
+          <Link
+            href={`/signup?plan=plus&interval=${interval}`}
+            className="gradient-button-depth focus-ring flex h-10 items-center justify-center rounded-ctl px-4 text-[15px] font-semibold text-white transition-all duration-150 hover:-translate-y-px hover:shadow-md active:translate-y-0 active:scale-[0.98]"
+          >
+            Get Plus
+          </Link>
+        </div>
       </Card>
     </div>
   );

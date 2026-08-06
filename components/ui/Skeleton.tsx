@@ -1,8 +1,15 @@
 import * as React from "react";
 import { cn } from "@/lib/cn";
 
-export function Skeleton({ className }: { className?: string }) {
-  return <div className={cn("skeleton", className)} aria-hidden />;
+export function Skeleton({
+  className,
+  style,
+}: {
+  className?: string;
+  /** For widths that must match a real element's measured size exactly. */
+  style?: React.CSSProperties;
+}) {
+  return <div className={cn("skeleton", className)} style={style} aria-hidden />;
 }
 
 /** Skeleton matching the standard card layout (no layout shift on load). */

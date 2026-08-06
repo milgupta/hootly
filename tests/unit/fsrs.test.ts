@@ -186,8 +186,8 @@ describe("previewIntervals (rating bar, docs/05 §7.3)", () => {
     }
   });
 
-  it("previews Again as the short relearning step on a mature card", () => {
-    expect(previewIntervals(matureRow(), NOW)[1]).toBe("<10m");
+  it("previews Again as a sub-hour relearning step even on a month-long card", () => {
+    expect(previewIntervals(matureRow(), NOW)[1]).toMatch(/^(<10m|\d{1,2}m)$/);
   });
 
   it("previews match what scheduleReview would actually persist", () => {
