@@ -1,0 +1,57 @@
+# Chapter 2: Limits and Derivatives
+
+## 2.1 Why Limits Come First
+
+Calculus exists to answer two questions that ordinary algebra cannot. The first is how to describe the rate at which a quantity changes at a single instant rather than over an interval. The second is how to add up infinitely many infinitely small pieces to get a finite total. Both questions run into the same obstacle: the natural formula for the answer involves dividing by zero, or adding up infinitely many terms, and neither operation is defined. The limit is the device that gets around the obstacle by asking what value an expression approaches rather than what value it takes.
+
+Consider the average rate of change of a function between two points. If the points are close together the average rate is a good approximation of the instantaneous rate, and the closer they are the better the approximation becomes. But we cannot simply set the two points equal, because then the formula reads zero divided by zero. What we can do is study the behaviour of the quotient as the separation shrinks toward zero without ever reaching it. That behaviour is the limit.
+
+## 2.2 The Definition of a Limit
+
+We say that the limit of f(x) as x approaches a equals L, written as the limit of f(x) as x tends to a being L, if we can make the values of f(x) as close to L as we like by taking x sufficiently close to a but not equal to a. The phrase "but not equal to a" is essential. The limit describes the behaviour of the function near the point, and it is entirely indifferent to the value of the function at the point. A function may be undefined at a and still have a perfectly good limit there.
+
+The formal version replaces the informal words with quantities. For every positive epsilon there exists a positive delta such that whenever the distance from x to a is greater than zero and less than delta, the distance from f(x) to L is less than epsilon. Epsilon is the tolerance we are asked to achieve on the output, and delta is the closeness on the input that achieves it. Proving a limit means producing a recipe that converts any epsilon anyone gives you into a delta that works.
+
+One-sided limits restrict the approach to a single direction. The left-hand limit considers only values of x less than a; the right-hand limit considers only values greater than a. A two-sided limit exists precisely when both one-sided limits exist and are equal to each other. This is the standard way to show that a limit fails to exist: exhibit two one-sided limits that disagree. The function that returns negative one for negative inputs and positive one for positive inputs has one-sided limits of negative one and positive one at zero, so it has no limit there.
+
+## 2.3 Computing Limits
+
+For a large class of functions the limit is found by direct substitution. If f is a polynomial or a rational function and a is in its domain, then the limit as x approaches a is simply f(a). This is the definition of continuity at a point, and polynomials are continuous everywhere.
+
+When substitution produces the indeterminate form zero over zero, the expression must be rewritten before the limit can be read off. Three techniques cover most cases. Factoring and cancelling removes the common factor causing the vanishing denominator, as when the difference of two squares in the numerator shares a factor with the denominator. Multiplying by a conjugate clears a difference of square roots. Simplifying a compound fraction clears the nested denominators. In each case the rewritten expression agrees with the original everywhere except at the single point a, and since the limit ignores the value at a, the two expressions have the same limit.
+
+The Squeeze Theorem handles limits that resist algebra. If a function is trapped between two other functions that both approach the same limit, then it must approach that limit too. The classic application bounds a rapidly oscillating expression between two functions that both tend to zero, forcing the oscillation to be extinguished.
+
+Two special limits are worth memorising because they appear constantly. The limit of sine of x divided by x, as x approaches zero, is one. The limit of one minus cosine of x divided by x, as x approaches zero, is zero. Both are stated for x measured in radians, and both are false if degrees are used instead.
+
+## 2.4 Continuity
+
+A function is continuous at a point when three conditions all hold. The function must be defined at the point. The limit must exist there. And the limit must equal the function value. Failing any one of the three produces a discontinuity, and the three kinds of failure have names: a removable discontinuity, where the limit exists but does not match the value; a jump discontinuity, where the one-sided limits disagree; and an infinite discontinuity, where the function grows without bound near the point.
+
+Continuity on an interval is what makes the major theorems work. The Intermediate Value Theorem says that a function continuous on a closed interval takes every value between the values at the endpoints somewhere inside the interval. This is the standard tool for proving that an equation has a solution without finding it: show that the function is continuous and that it is negative at one endpoint and positive at the other, and a root must lie between them.
+
+## 2.5 The Derivative
+
+The derivative of f at a is the limit of the difference quotient, the change in output divided by the change in input, as the change in input approaches zero. Geometrically it is the slope of the tangent line to the graph at that point, obtained as the limiting position of secant lines through nearby points. Physically, if the function gives position as a function of time, the derivative gives velocity at an instant.
+
+If the derivative exists at a point, the function is said to be differentiable there. Differentiability is a strictly stronger condition than continuity. Every differentiable function is continuous, because a jump in the value would make the difference quotient blow up. The converse fails: the absolute value function is continuous at zero but not differentiable there, because the difference quotient approaches negative one from the left and positive one from the right. Corners, cusps, and vertical tangents are the three standard ways for a continuous function to fail to be differentiable.
+
+Treating the derivative as a function in its own right, rather than as a number attached to one point, is the step that makes the subject computational. The derivative function assigns to each input the slope at that input, and it has its own domain, which consists of exactly those points where the original function is differentiable.
+
+## 2.6 Differentiation Rules
+
+Computing every derivative from the limit definition would be intolerable, so the rules exist to shortcut it. The power rule states that the derivative of x raised to the n is n times x raised to the n minus one, and it holds for every real exponent, not only positive integers. The derivative of a constant is zero, which matches the observation that a horizontal line has slope zero everywhere.
+
+Differentiation is linear: the derivative of a sum is the sum of the derivatives, and a constant multiplier passes straight through. Products and quotients do not behave so simply. The product rule states that the derivative of a product is the first function times the derivative of the second plus the second times the derivative of the first. Assuming that the derivative of a product is the product of the derivatives is the single most common error in a first course, and a one-line check with x times x, whose derivative is two x rather than one, settles it.
+
+The quotient rule gives the derivative of a ratio as the denominator times the derivative of the numerator, minus the numerator times the derivative of the denominator, all divided by the square of the denominator. The order of the two terms in the numerator matters, because subtraction is not commutative.
+
+The chain rule handles composition, which is where most real problems live. The derivative of a composite function is the derivative of the outer function evaluated at the inner function, multiplied by the derivative of the inner function. Forgetting the second factor is the other most common error in a first course. The chain rule is also what makes implicit differentiation work, since differentiating an expression in y with respect to x produces a factor of the derivative of y with respect to x by the chain rule.
+
+## 2.7 Using Derivatives
+
+The sign of the first derivative reports whether a function is increasing or decreasing. Where the derivative is positive the function rises; where it is negative the function falls. Points at which the derivative is zero or undefined are called critical points, and they are the only candidates for a local maximum or minimum in the interior of a domain.
+
+The second derivative reports concavity. Where it is positive the graph curves upward like a bowl; where it is negative it curves downward like a dome. A point where the concavity changes is an inflection point. Interpreted physically, if the first derivative of position is velocity, the second derivative is acceleration.
+
+Related-rate problems apply the chain rule to quantities that are all changing with time. The method is always the same: write the equation relating the quantities, differentiate both sides with respect to time, substitute the known rates and values, and solve for the unknown rate. Substituting numerical values before differentiating rather than after is a frequent and costly mistake, because it freezes a changing quantity into a constant.

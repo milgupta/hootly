@@ -1,0 +1,43 @@
+{
+  "id": "us_history_declaration",
+  "source": "us_history_declaration.txt",
+  "course": "US History to 1877",
+  "subject": "history",
+  "study_level": "college",
+  "familiarity": "new",
+  "chunk_id_prefix": "d0c5",
+  "min_chunks": 3,
+  "must_appear_topics": [
+    "common sense",
+    "richard henry lee",
+    "committee of five",
+    "jefferson",
+    "consent of the governed",
+    "unalienable",
+    "john locke",
+    "grievance",
+    "slave trade",
+    "july",
+    "articles of confederation",
+    "seneca falls"
+  ],
+  "must_not_appear_claims": [
+    "all fifty-six delegates signed the declaration on july 4, 1776",
+    "thomas paine wrote the declaration of independence",
+    "the declaration established the three branches of the federal government",
+    "the declaration lists twelve grievances",
+    "the grievances are addressed to parliament rather than the king",
+    "the declaration abolished slavery in the thirteen states",
+    "the declaration was ratified by the states in 1781",
+    "john locke wrote the second treatise of government in 1776"
+  ],
+  "thresholds": {
+    "schema_validity": 1.0,
+    "citation_coverage": 0.95,
+    "answer_key_pass_rate": 0.9,
+    "fill_blank_leaks": 0,
+    "min_note_sections": 3,
+    "min_cards": 5,
+    "min_questions": 8
+  }
+}

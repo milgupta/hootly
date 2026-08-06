@@ -50,3 +50,19 @@
 - share_link_created / share_link_opened stay unwired: /s/[slug] sharing is P1 (docs/05 §7, 04 §7 "route reserved") and no shipped surface creates a link. The typed events exist so wiring is a one-liner when P1 lands.
 - Ship-gate fix (gate item 10): 10 routes shipped without an error.tsx and 6 without a loading.tsx; added both everywhere via a shared components/ui/RouteError.tsx using the docs/05 §11 500 copy, and hand-matched skeletons per route so there's no layout shift.
 - Skeleton gained an optional `style` prop so a skeleton can match a real element's measured width exactly (tab labels, nav items) rather than approximating with a Tailwind width class.
+- M10 nav CTA: "Start free" renders secondary at scroll 0 and swaps to the purple primary past 240px, so the hero's "Start studying free" is the only purple primary above the fold (05 §1 wants both; 03 §8 rule 2 allows one).
+- M10 routing: `app/(marketing)/` owns `/`, `/pricing`, `/legal/*`; shared client pieces live in `app/(marketing)/_components/` (private folder, never routable).
+- Landing feature-tab crossfade runs as two 100ms halves (fade out → swap → fade in) so only one panel is ever painted — kills StudyFetch's text-overlap bug inside the specced 200ms.
+- FAQ accordion animates opacity only and never height (03 §5 transform/opacity rule); +/− icons are identical across all six rows.
+- Hero glow is applied to the 24px art container itself (bounded + rounded) rather than a floating rectangle, so its edge reads as the art frame and never falls under a paragraph.
+- Landing hero mock uses illustrative product content ("BIO 172 — Human Physiology", "Lecture 4.pdf · p.12") — UI examples, not stats/testimonials; the social-proof slot is left empty behind a reserving code comment (00 §8).
+- Section headings unspecified in 05 §1: "How it works", "What Ollie builds from your materials", "Frequently asked questions"; the pricing teaser reuses the /pricing H1 "Simple, honest pricing."
+- 3-step band supporting lines written from doc-grounded facts (05 §1 FAQ 6 upload list, hero sub, FSRS/plan behaviour); the "small illustration" per step is a lucide icon in a primary-soft tile (single icon set rule).
+- Ollie has no "looking under a rock" pose in the 05 §12 variant list; 404 and 500 use `concerned` as the apologetic pose.
+- Offline banner renders as a bottom-center status pill (toasts live bottom-center; a top strip would collide with the sticky marketing nav) and is mounted in the marketing layout; the app shell can import the same component.
+- Marketing contact/socials placeholders: support@hootly.app, privacy@hootly.app, tiktok.com/@hootlyapp, instagram.com/hootlyapp — confirm before launch; socials are text links because lucide ships no TikTok glyph.
+- Pre-auth "Get Plus" links to /signup?plan=plus&interval={interval} (Stripe checkout needs a session first); "Start free" links to /signup.
+- Legal templates assume entity "Hootly", Delaware governing law, 7-year billing-record retention, and the subprocessor list implied by docs 04/07 — all flagged for attorney review in each file's header comment.
+- /pricing comparison table groups rows as Limits / Study tools / Your data and your money; the "Save 46%" badge is its own focusable tooltip trigger (not nested inside the toggle button) so the $83.88-vs-$155.88 math is keyboard-reachable, not hover-only.
+- Billing-FAQ answers beyond 05 §2's "How do I cancel?" are derived from 07 §1.2–1.4 behaviour (no trial, no weekly plan, .edu auto-discount, downgrade never locks existing content).
+- OfflineBanner is mounted once, in the ROOT layout, so it covers marketing + app + auth; the marketing layout's duplicate mount was removed (Ollie/global chrome never appears twice on one screen, docs/03 §6).

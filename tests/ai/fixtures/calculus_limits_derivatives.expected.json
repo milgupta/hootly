@@ -1,0 +1,47 @@
+{
+  "id": "calculus_limits_derivatives",
+  "source": "calculus_limits_derivatives.txt",
+  "course": "Calculus I",
+  "subject": "calculus",
+  "study_level": "college",
+  "familiarity": "new",
+  "chunk_id_prefix": "ca1c",
+  "min_chunks": 3,
+  "must_appear_topics": [
+    "limit",
+    "one-sided",
+    "epsilon",
+    "delta",
+    "indeterminate",
+    "squeeze theorem",
+    "continuity",
+    "intermediate value theorem",
+    "difference quotient",
+    "differentiable",
+    "power rule",
+    "product rule",
+    "quotient rule",
+    "chain rule",
+    "critical point",
+    "concavity"
+  ],
+  "must_not_appear_claims": [
+    "every continuous function is differentiable",
+    "the derivative of a product is the product of the derivatives",
+    "a two-sided limit can exist when the one-sided limits disagree",
+    "the power rule applies only to positive integer exponents",
+    "the limit of a function at a point is always equal to the value of the function at that point",
+    "the absolute value function is differentiable at zero",
+    "the derivative of a constant is one",
+    "the limit of sine of x over x as x approaches zero is zero"
+  ],
+  "thresholds": {
+    "schema_validity": 1.0,
+    "citation_coverage": 0.95,
+    "answer_key_pass_rate": 0.9,
+    "fill_blank_leaks": 0,
+    "min_note_sections": 3,
+    "min_cards": 5,
+    "min_questions": 8
+  }
+}

@@ -1,0 +1,53 @@
+# Chapter 3: Cell Structure and the Organelles
+
+## 3.1 The Cell as the Unit of Life
+
+Every living thing on Earth is built from cells. A cell is the smallest arrangement of matter that can carry out all of the activities we associate with being alive: it takes in energy, converts that energy into useful work, responds to its surroundings, and makes copies of itself. Some organisms, such as bacteria and yeasts, complete their entire life cycle as a single cell. Others, including every plant and animal you can see without a microscope, are assemblies of trillions of cells that specialise for different jobs.
+
+Three statements together form the cell theory, which organises almost everything in this chapter. First, all living organisms are composed of one or more cells. Second, the cell is the basic unit of structure and organisation in organisms. Third, cells arise only from pre-existing cells by division. The third statement is the one that took longest to establish, because for centuries observers assumed that living matter could assemble itself spontaneously out of decaying material.
+
+Cells are small for a reason that comes directly from geometry. As a sphere grows, its volume increases with the cube of the radius while its surface area increases only with the square. A cell that doubles in radius therefore has eight times as much interior to supply but only four times as much membrane through which to supply it. Beyond a certain size, nutrients cannot diffuse inward, and wastes cannot diffuse outward, fast enough to keep the interior alive. This surface-area-to-volume constraint explains why most cells fall between one and one hundred micrometres across, and why cells that need extra exchange capacity, such as those lining the small intestine, cover themselves in fine projections that add surface area without adding much volume.
+
+## 3.2 Two Great Categories: Prokaryotic and Eukaryotic Cells
+
+Biologists divide all cells into two categories based on whether the genetic material is enclosed in a membrane. Prokaryotic cells, which include the bacteria and the archaea, keep their DNA in an irregular region of the cytoplasm called the nucleoid. There is no membrane separating that DNA from the rest of the cell's interior. Eukaryotic cells, which include all protists, fungi, plants, and animals, enclose their DNA inside a true nucleus bounded by a double membrane.
+
+The difference runs deeper than the nucleus alone. Eukaryotic cells are also filled with membrane-bound compartments called organelles, each of which maintains chemical conditions different from the surrounding cytoplasm. Compartmentalisation lets a eukaryotic cell run incompatible reactions at the same time in different places: digestive enzymes that would destroy the cell can be confined behind a membrane, and a strongly acidic interior can be maintained a few nanometres away from a neutral one. Prokaryotic cells achieve their chemistry without this internal partitioning, which is one reason they are typically ten times smaller in diameter than eukaryotic cells.
+
+Both categories share four features. Both are bounded by a plasma membrane. Both contain cytoplasm, the semi-fluid interior in which reactions occur. Both carry their hereditary information in DNA. And both build proteins on ribosomes, although the ribosomes of prokaryotes are somewhat smaller than those of eukaryotes.
+
+## 3.3 The Plasma Membrane
+
+The plasma membrane is a phospholipid bilayer studded with proteins. Each phospholipid has a phosphate head that is attracted to water and two fatty acid tails that are repelled by it. Dropped into a watery environment, these molecules arrange themselves spontaneously into a double sheet with the heads facing outward toward the water on both sides and the tails tucked inward, shielded from it. No energy input is required for this arrangement; it is simply the lowest-energy configuration available to the molecules.
+
+The resulting sheet is selectively permeable. Small non-polar molecules such as oxygen and carbon dioxide slip through the fatty interior unaided. Ions and large polar molecules such as glucose cannot, and must instead cross through protein channels and transporters embedded in the membrane. Some of those transporters move substances down a concentration gradient without any energy cost, a process called passive transport. Others consume ATP to push substances against their gradient, which is called active transport. The sodium-potassium pump, which exports three sodium ions for every two potassium ions it imports, is the best-studied example of the second kind.
+
+Because the individual phospholipids are not chemically bonded to one another, they drift laterally within their own layer. The membrane therefore behaves as a two-dimensional fluid in which the embedded proteins float like boats. This description is known as the fluid mosaic model, and it explains why membranes can heal small punctures, fuse with one another, and pinch off into vesicles.
+
+## 3.4 The Nucleus and Ribosomes
+
+The nucleus is the largest organelle in most animal cells and holds nearly all of the cell's DNA. Its boundary is a double membrane called the nuclear envelope, perforated by nuclear pores that regulate what enters and leaves. Inside, DNA is wound around histone proteins into a complex called chromatin, which condenses into visible chromosomes only when the cell is preparing to divide. A denser region called the nucleolus is where ribosomal subunits are assembled before being exported through the pores.
+
+Ribosomes are the sites of protein synthesis. Unlike most of the structures in this chapter, they are not bounded by a membrane; they are complexes of RNA and protein. Free ribosomes float in the cytoplasm and typically produce proteins destined for use inside the cell. Bound ribosomes attach to the endoplasmic reticulum and produce proteins destined for membranes, for lysosomes, or for export.
+
+## 3.5 The Endomembrane System
+
+The endoplasmic reticulum is a network of flattened sacs and tubes continuous with the nuclear envelope. Where ribosomes stud its surface it is called rough endoplasmic reticulum, and its job is to fold and chemically tag newly made proteins. Where ribosomes are absent it is called smooth endoplasmic reticulum, and its jobs include synthesising lipids, storing calcium ions, and detoxifying drugs and metabolic byproducts.
+
+Vesicles budding from the endoplasmic reticulum carry their contents to the Golgi apparatus, a stack of flattened membranes that sorts, modifies, and packages proteins for delivery. Material enters the stack on the face nearest the endoplasmic reticulum and leaves from the opposite face in vesicles addressed to particular destinations.
+
+Lysosomes are membrane-bound sacs of digestive enzymes maintained at an interior pH near five, well below the neutral pH of the surrounding cytoplasm. They break down worn-out organelles, engulfed bacteria, and macromolecules that the cell needs to recycle. Because their enzymes work best in acid and poorly at cytoplasmic pH, a leaking lysosome does comparatively little damage.
+
+## 3.6 Mitochondria and Chloroplasts
+
+Mitochondria carry out cellular respiration, the controlled oxidation of sugars that transfers energy into ATP. Each mitochondrion has two membranes: a smooth outer one and an inner one folded into deep pleats called cristae. The folding matters because the final and most productive stage of respiration, oxidative phosphorylation, takes place on that inner membrane, and folding multiplies the available area. The compartment enclosed by the inner membrane is called the matrix.
+
+Chloroplasts are found in plants and algae and carry out photosynthesis, capturing light energy and using it to build sugars from carbon dioxide and water. They contain stacked discs called thylakoids, where the light-capturing pigment chlorophyll is concentrated, suspended in a fluid called the stroma.
+
+Both mitochondria and chloroplasts contain their own small circular DNA and their own ribosomes, and both divide independently of the cell that contains them. This evidence supports the endosymbiotic theory, which proposes that these organelles descend from free-living prokaryotes that were engulfed by an ancestral host cell and retained rather than digested.
+
+## 3.7 The Cytoskeleton and the Cell Wall
+
+The cytoskeleton is a network of protein filaments that gives the cell its shape, anchors organelles, and provides tracks along which motor proteins haul cargo. Microtubules, the thickest filaments, are hollow tubes of the protein tubulin; they form the spindle that separates chromosomes during division. Microfilaments, the thinnest, are twisted strands of actin that support the cell surface and drive changes in cell shape. Intermediate filaments sit between the two in diameter and bear mechanical stress.
+
+Plant cells, fungal cells, and most prokaryotic cells add a rigid cell wall outside the plasma membrane. In plants the wall is built mainly of cellulose and resists the outward pressure that builds when the central vacuole fills with water. That pressure, called turgor pressure, is what holds a non-woody plant upright; when it drops, the plant wilts. Animal cells have no wall, which is why they depend so heavily on the cytoskeleton for structural support.

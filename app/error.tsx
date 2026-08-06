@@ -28,7 +28,7 @@ export default function GlobalError({
         {/* Hero glow sits behind the art only — never under text (docs/03 §1). */}
         <div className="relative flex justify-center">
           <div
-            className="gradient-hero-glow pointer-events-none absolute inset-x-[-140px] -top-10 bottom-0"
+            className="gradient-hero-glow pointer-events-none absolute inset-x-[-120px] -top-4 bottom-0"
             aria-hidden
           />
           <OllieAnimated mode="concerned" size={96} />

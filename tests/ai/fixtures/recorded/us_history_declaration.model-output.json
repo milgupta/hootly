@@ -1,0 +1,174 @@
+{
+  "_comment": "Deterministic recorded model output for the US-history golden-set packet. Chunk prefixes are the first 8 hex chars of the deterministic chunk uuids built in tests/ai/helpers.ts (d0c50000..d0c000N).",
+  "notes_outline": {
+    "sections": [
+      { "heading": "The Road to July 1776", "covers_chunk_ids": ["d0c50000"] },
+      { "heading": "The Argument of the Declaration", "covers_chunk_ids": ["d0c50000", "d0c50001"] },
+      { "heading": "The Grievances", "covers_chunk_ids": ["d0c50001"] },
+      { "heading": "Adoption, Signing, and Afterlife", "covers_chunk_ids": ["d0c50002"] }
+    ]
+  },
+  "note_sections": [
+    {
+      "heading": "The Road to July 1776",
+      "body_md": "### Fighting before separation\n\nBy spring 1776 the thirteen colonies had been in open military conflict with Britain for roughly a year, with fighting having begun at Lexington and Concord in April 1775 [chunk:d0c50000]. Congress had already raised an army and appointed George Washington to command it, yet it had not renounced allegiance to the Crown [chunk:d0c50000].\n\n### What changed the debate\n\nThe King rejected the **Olive Branch Petition** that Congress had sent in July 1775 and then proclaimed the colonies to be in rebellion [chunk:d0c50000]. Thomas Paine's pamphlet ***Common Sense***, published in January 1776, argued in plain language that hereditary monarchy was absurd and that an island could not permanently govern a continent [chunk:d0c50000].\n\n### The committee\n\nOn 7 June 1776 **Richard Henry Lee** of Virginia introduced a resolution declaring the colonies free and independent states [chunk:d0c50000]. Congress postponed the vote but appointed a committee of five — Adams, Franklin, Jefferson, Livingston and Sherman — and assigned the drafting to Jefferson [chunk:d0c50000].",
+      "source_chunk_ids": ["d0c50000"]
+    },
+    {
+      "heading": "The Argument of the Declaration",
+      "body_md": "### Four parts\n\nThe Declaration is organised as an argument rather than an announcement, in four parts: philosophical premises, the grievances offered as evidence, a statement that remedies were tried and refused, and the concluding inference [chunk:d0c50000].\n\n### The premises\n\nThe most quoted passage holds the truths to be self-evident, that all men are created equal and are endowed with certain unalienable rights including life, liberty and the pursuit of happiness [chunk:d0c50000]. The sentence that follows does the political work, because it converts a claim about rights into a claim about the purpose and limits of government [chunk:d0c50001].\n\n### Where the ideas came from\n\nGovernments derive their just powers from the **consent of the governed**, and a form of government that becomes destructive of these ends may be altered or abolished by the people [chunk:d0c50001]. That framework comes from **John Locke**, whose *Second Treatise of Government* was published in 1689 [chunk:d0c50001]. Locke had written of life, liberty and property, and Jefferson's substitution of the pursuit of happiness broadened the claim beyond the protection of holdings [chunk:d0c50001].",
+      "source_chunk_ids": ["d0c50000", "d0c50001"]
+    },
+    {
+      "heading": "The Grievances",
+      "body_md": "### Twenty-seven charges, all against the King\n\nThe longest section lists twenty-seven specific charges, every one addressed to the King personally rather than to Parliament [chunk:d0c50001]. The choice was deliberate: blaming Parliament would have conceded that Parliament had authority over the colonies, which was the very point in dispute [chunk:d0c50001].\n\n### Groups of charges\n\nSeveral charges concern the obstruction of colonial self-government, including dissolving assemblies, refusing assent to laws, and making judges dependent on the King for tenure and salary [chunk:d0c50001]. Several concern the military, including standing armies kept in peacetime without legislative consent and troops quartered among the population [chunk:d0c50001]. Others concern trade and taxation, including cutting off commerce and imposing taxes without consent [chunk:d0c50001].\n\n### The deleted passage\n\nJefferson's draft charged the King with sustaining the transatlantic slave trade, and delegates from South Carolina and Georgia objected until the passage was struck [chunk:d0c50001]. The deletion matters because it shows the contradiction between the document's premises and slavery was visible and argued over at the time [chunk:d0c50001].",
+      "source_chunk_ids": ["d0c50001"]
+    },
+    {
+      "heading": "Adoption, Signing, and Afterlife",
+      "body_md": "### Two dates\n\nCongress approved Lee's resolution of independence on 2 July 1776, and John Adams predicted the second of July would be the great anniversary festival [chunk:d0c50002]. The text itself was debated two more days and approved on 4 July, and it was that date the printed copies carried [chunk:d0c50002].\n\n### The signing\n\nThe engrossed parchment copy was not signed on 4 July; Congress ordered it prepared on 19 July and most delegates signed on 2 August 1776, with fifty-six signing in total [chunk:d0c50002]. The July broadsides carried only the names of John Hancock as president and Charles Thomson as secretary [chunk:d0c50002].\n\n### What it did and did not do\n\nThe Declaration asserted the states' power to make war, conclude peace and form alliances, which mattered practically because the 1778 alliance with France was decisive [chunk:d0c50002]. It created no national government and is not a constitution; the **Articles of Confederation** were drafted in 1777 and ratified in 1781, and the Constitution of 1787 replaced them [chunk:d0c50002]. Abolitionists and the organisers of the 1848 **Seneca Falls** Convention later returned to the second paragraph precisely because its premises were stated so broadly [chunk:d0c50002].",
+      "source_chunk_ids": ["d0c50002"]
+    }
+  ],
+  "cards": {
+    "cards": [
+      { "kind": "basic", "front": "What two developments in 1775–76 pushed Congress toward declaring independence?", "back": "The King's rejection of the Olive Branch Petition and his proclamation of rebellion, and the January 1776 publication of Paine's Common Sense.", "source_chunk_ids": ["d0c50000"] },
+      { "kind": "basic", "front": "Who introduced the resolution for independence, and on what date?", "back": "Richard Henry Lee of Virginia, on 7 June 1776.", "source_chunk_ids": ["d0c50000"] },
+      { "kind": "reversed", "front": "Committee of Five", "back": "Adams, Franklin, Jefferson, Livingston and Sherman — appointed to draft the Declaration, with Jefferson doing the writing.", "source_chunk_ids": ["d0c50000"] },
+      { "kind": "cloze", "front": "Governments derive their just powers from the {{c1::consent of the governed}}.", "back": "consent of the governed", "source_chunk_ids": ["d0c50001"] },
+      { "kind": "basic", "front": "Why were the grievances addressed to the King rather than to Parliament?", "back": "Blaming Parliament would have conceded that Parliament had authority over the colonies, which was the point in dispute.", "source_chunk_ids": ["d0c50001"] },
+      { "kind": "basic", "front": "Which passage did Congress strike from Jefferson's draft, and why?", "back": "A charge against the King for sustaining the transatlantic slave trade; South Carolina and Georgia objected and northern delegates did not press it.", "source_chunk_ids": ["d0c50001"] },
+      { "kind": "cloze", "front": "Most delegates signed the engrossed parchment on {{c1::2 August 1776}}, not on 4 July.", "back": "2 August 1776", "source_chunk_ids": ["d0c50002"] },
+      { "kind": "basic", "front": "Why did independent statehood matter practically in 1778?", "back": "A rebellious province could not sign a treaty, but an independent state could — enabling the decisive alliance with France.", "source_chunk_ids": ["d0c50002"] }
+    ]
+  },
+  "quiz": {
+    "title": "The Declaration of Independence — Quiz",
+    "questions": [
+      {
+        "qtype": "mcq",
+        "topic": "The Road to July 1776",
+        "prompt": "Which pamphlet, published in January 1776, argued that an island could not permanently govern a continent?",
+        "options": ["The Federalist", "Common Sense", "The Second Treatise of Government", "The Olive Branch Petition"],
+        "answer": "Common Sense",
+        "explanation": "Thomas Paine's pamphlet made that argument in plain language and shifted ordinary opinion faster than the congressional debates [chunk:d0c50000].",
+        "source_chunk_ids": ["d0c50000"],
+        "difficulty": 1
+      },
+      {
+        "qtype": "mcq",
+        "topic": "The Argument of the Declaration",
+        "prompt": "Whose political philosophy supplied the premise that government exists to secure pre-political rights and may be replaced when it violates them?",
+        "options": ["John Locke", "Thomas Hobbes", "Baron de Montesquieu", "Jean-Jacques Rousseau"],
+        "answer": "John Locke",
+        "explanation": "The packet identifies Locke's Second Treatise of Government, published in 1689, as the source of that framework [chunk:d0c50001].",
+        "source_chunk_ids": ["d0c50001"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "mcq",
+        "topic": "The Grievances",
+        "prompt": "Why did the drafters address every grievance to the King personally?",
+        "options": ["Because Parliament had already dissolved itself", "Because the King had written the offending statutes", "Because blaming Parliament would concede that Parliament held authority over the colonies", "Because the King was the only official with a public address"],
+        "answer": "Because blaming Parliament would concede that Parliament held authority over the colonies",
+        "explanation": "Addressing the King framed the quarrel as a breach of the compact between sovereign and subjects, without conceding the disputed point [chunk:d0c50001].",
+        "source_chunk_ids": ["d0c50001"],
+        "difficulty": 3
+      },
+      {
+        "qtype": "mcq",
+        "topic": "Adoption, Signing, and Afterlife",
+        "prompt": "Which document first framed a national government for the united states?",
+        "options": ["The Declaration of Independence", "The Articles of Confederation", "The Constitution of 1787", "The Olive Branch Petition"],
+        "answer": "The Articles of Confederation",
+        "explanation": "The Declaration created no government; the Articles, drafted in 1777 and ratified in 1781, were the first framework, later replaced by the Constitution [chunk:d0c50002].",
+        "source_chunk_ids": ["d0c50002"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "true_false",
+        "topic": "Adoption, Signing, and Afterlife",
+        "prompt": "All fifty-six delegates put their names to the engrossed parchment copy on 4 July 1776.",
+        "options": ["True", "False"],
+        "answer": "False",
+        "explanation": "Congress ordered the parchment prepared on 19 July; most delegates signed on 2 August 1776 and a few later still [chunk:d0c50002].",
+        "source_chunk_ids": ["d0c50002"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "true_false",
+        "topic": "The Grievances",
+        "prompt": "A charge concerning the transatlantic slave trade appeared in Jefferson's draft but not in the adopted text.",
+        "options": ["True", "False"],
+        "answer": "True",
+        "explanation": "Delegates from South Carolina and Georgia objected and the passage was struck before adoption [chunk:d0c50001].",
+        "source_chunk_ids": ["d0c50001"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "fill_blank",
+        "topic": "The Argument of the Declaration",
+        "prompt": "The second paragraph states that governments derive their just powers from the ______ of the governed.",
+        "answer": "consent",
+        "explanation": "The phrase converts a claim about rights into a claim about the source and limits of governmental authority [chunk:d0c50001].",
+        "source_chunk_ids": ["d0c50001"],
+        "difficulty": 1
+      },
+      {
+        "qtype": "fill_blank",
+        "topic": "The Road to July 1776",
+        "prompt": "Congress sent the ______ Branch Petition to the King in July 1775 as a final appeal for reconciliation.",
+        "answer": "Olive",
+        "explanation": "The King rejected it and then proclaimed the colonies to be in rebellion [chunk:d0c50000].",
+        "source_chunk_ids": ["d0c50000"],
+        "difficulty": 1
+      },
+      {
+        "qtype": "short_answer",
+        "topic": "Adoption, Signing, and Afterlife",
+        "prompt": "Explain why later reform movements quoted the Declaration's second paragraph against the republic that produced it.",
+        "answer": "Because its premises were stated broadly enough to indict the exclusions in practice — abolitionists and the 1848 Seneca Falls organisers used them that way.",
+        "explanation": "The packet notes that the breadth of the stated premises is exactly what made the text usable by later movements [chunk:d0c50002].",
+        "source_chunk_ids": ["d0c50002"],
+        "difficulty": 3
+      },
+      {
+        "qtype": "short_answer",
+        "topic": "The Argument of the Declaration",
+        "prompt": "How did Jefferson's phrasing of the rights differ from Locke's?",
+        "answer": "Locke wrote of life, liberty and property; Jefferson substituted the pursuit of happiness, broadening the claim beyond the protection of holdings.",
+        "explanation": "The substitution is described in the packet as broadening the claim beyond property [chunk:d0c50001].",
+        "source_chunk_ids": ["d0c50001"],
+        "difficulty": 2
+      }
+    ]
+  },
+  "plan": {
+    "items": [
+      { "idx": 0, "title": "Read: The Road to July 1776", "kind": "read_note", "topic": "The Road to July 1776", "due_date": "2026-08-07" },
+      { "idx": 1, "title": "Read: The Argument of the Declaration", "kind": "read_note", "topic": "The Argument of the Declaration", "due_date": "2026-08-08" },
+      { "idx": 2, "title": "Review 15 cards", "kind": "review_cards", "topic": "Causes and premises", "due_date": "2026-08-09" },
+      { "idx": 3, "title": "Quiz: causes and premises", "kind": "take_quiz", "topic": "The Argument of the Declaration", "due_date": "2026-08-10" },
+      { "idx": 4, "title": "Read: The Grievances", "kind": "read_note", "topic": "The Grievances", "due_date": "2026-08-11" },
+      { "idx": 5, "title": "Read: Adoption, Signing, and Afterlife", "kind": "read_note", "topic": "Adoption, Signing, and Afterlife", "due_date": "2026-08-12" }
+    ]
+  },
+  "groundedness": [
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 1 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 0.97 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 1 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 0.94 }
+  ],
+  "answer_key_verdicts": [
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Common Sense is named in the sources with the island/continent argument." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Locke is named explicitly; the distractors do not appear in the sources." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Matches the stated rationale for addressing the King." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The Articles are identified as the first framework." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The signing dates in the sources contradict the statement, so False is right." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The struck passage is described in the sources." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The answer does not appear in the prompt and is the only reasonable fill." },
+    { "correct": true, "well_formed": false, "explanation_ok": true, "reason": "The blank is ambiguous: 'Olive' alone reads oddly and a student could reasonably write 'Olive Branch'. Regenerate with the whole name blanked." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Supported by the afterlife paragraph." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The property/happiness substitution is stated in the sources." }
+  ]
+}

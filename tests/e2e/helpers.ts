@@ -1,6 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { createClient, type Session, type SupabaseClient } from "@supabase/supabase-js";
 import type { BrowserContext } from "@playwright/test";
 
@@ -13,7 +12,21 @@ import type { BrowserContext } from "@playwright/test";
  * moment real keys land.
  */
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+/** Walk up from the cwd to the directory holding package.json. Deliberately avoids
+ *  both `import.meta.url` and `__dirname`: Playwright transpiles specs to CJS while
+ *  tsc type-checks them as ESM, so neither is portable across both. */
+function findRepoRoot(from: string = process.cwd()): string {
+  let dir = path.resolve(from);
+  for (let i = 0; i < 8; i += 1) {
+    if (existsSync(path.join(dir, "package.json"))) return dir;
+    const parent = path.dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  return path.resolve(from);
+}
+
+const repoRoot = findRepoRoot();
 
 /* ── env ──────────────────────────────────────────────────────────────────── */
 
@@ -73,20 +86,24 @@ export const hasJourneyKeys = missingJourneyKeys().length === 0;
 /** Stripe must be in TEST mode — a live key would make this suite charge real cards. */
 export const stripeIsTestMode = ENV.stripeSecretKey.startsWith("sk_test_");
 
-/** The loud skip banner. Printed once at collection time so a skip can never be
- *  mistaken for a pass in CI output. */
+/** The loud skip banner. Printed from the collection process only (workers set
+ *  TEST_WORKER_INDEX) so it lands above the test list instead of interleaved.
+ *  Every skipped test title also names the missing keys — a skip can never be
+ *  mistaken for a pass. */
 export function announceSkipIfUnkeyed(): string {
+  const inWorker = process.env.TEST_WORKER_INDEX !== undefined;
   const missing = missingJourneyKeys();
   if (missing.length === 0) {
     if (!stripeIsTestMode) {
       const warning =
         "STRIPE_SECRET_KEY is not a TEST-mode key (sk_test_…). Refusing to run the checkout journey against live Stripe.";
-      console.warn(`\n[31m⛔ ${warning}[0m\n`);
+      if (!inWorker) console.warn(`\n[31m⛔ ${warning}[0m\n`);
       return warning;
     }
     return "";
   }
   const reason = `SKIPPED — the full signup→checkout→refund journey needs keys that are absent: ${missing.join(", ")}`;
+  if (inWorker) return reason;
   console.warn(
     [
       "",

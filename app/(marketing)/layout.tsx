@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { OllieMark } from "@/components/ollie/OllieMark";
-import { OfflineBanner } from "@/components/OfflineBanner";
 import { MarketingNav } from "./_components/MarketingNav";
 
 /**
@@ -105,7 +104,6 @@ export default function MarketingLayout({
         </div>
       </footer>
 
-      <OfflineBanner />
     </div>
   );
 }

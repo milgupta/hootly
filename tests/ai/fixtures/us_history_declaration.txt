@@ -1,0 +1,47 @@
+# Unit 4: The Declaration of Independence — A Primary Source Packet
+
+## 4.1 The Situation in the Spring of 1776
+
+By the spring of 1776 the thirteen British colonies in North America had been in open military conflict with the mother country for roughly a year. Fighting had begun at Lexington and Concord in April 1775, and the Second Continental Congress had already raised an army and appointed George Washington to command it. Yet Congress had not renounced allegiance to the Crown. Many delegates still described themselves as loyal subjects seeking the restoration of rights they believed they already possessed as Englishmen.
+
+Two developments pushed the debate toward separation. The first was the King's rejection of the Olive Branch Petition, which Congress had sent in July 1775 as a final appeal for reconciliation, followed by a proclamation declaring the colonies to be in rebellion. The second was the publication in January 1776 of Thomas Paine's pamphlet *Common Sense*, which argued in plain language that hereditary monarchy was absurd on its face and that an island could not permanently govern a continent. The pamphlet sold in enormous numbers for its day and shifted ordinary opinion faster than the debates in Congress had.
+
+On 7 June 1776, Richard Henry Lee of Virginia introduced a resolution to Congress declaring that the colonies were, and of right ought to be, free and independent states. Congress postponed the vote to give the delegates time to consult their assemblies, but appointed a committee of five to prepare a public statement in case the resolution passed. The committee consisted of John Adams, Benjamin Franklin, Thomas Jefferson, Robert Livingston, and Roger Sherman. Jefferson, then thirty-three years old, was assigned the drafting.
+
+## 4.2 The Structure of the Document
+
+The Declaration is short, and it is organised as an argument rather than as an announcement. It has four parts, and reading it as an argument makes its logic much easier to follow.
+
+The preamble states the philosophical premises. The second section lists the grievances that are offered as evidence. The third section states that the colonists have already tried the remedies available to them and been refused. The conclusion draws the inference: because the premises hold and the evidence supports them, the political connection is dissolved.
+
+The most quoted passage is the opening of the second paragraph, which sets out the premises:
+
+> We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.
+
+The sentence that follows is the one that does the political work, because it converts a claim about rights into a claim about the purpose and the limits of government:
+
+> That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it, and to institute new Government.
+
+Two ideas in these lines were not original to Jefferson, and he never claimed they were. The idea that government exists to secure pre-political rights, and that a government which violates them may lawfully be replaced, comes from the English philosopher John Locke, whose *Second Treatise of Government* had been published in 1689. Locke had written of life, liberty, and property; Jefferson's substitution of the pursuit of happiness broadened the claim beyond the protection of holdings. Jefferson later described the document's purpose not as the discovery of new principles but as an expression of the common sense of the subject.
+
+## 4.3 The Grievances
+
+The longest section of the Declaration is a list of specific charges. There are twenty-seven of them, and every one is addressed to the King personally rather than to Parliament. That choice was deliberate. To blame Parliament would have conceded that Parliament had authority over the colonies, which was the very point in dispute. By addressing the King, the drafters framed the quarrel as a breach of the compact between a sovereign and his subjects.
+
+The charges fall into recognisable groups. Several concern the obstruction of colonial self-government: dissolving representative assemblies, refusing assent to laws, and making judges dependent on the King's will for their tenure and salaries. Several concern the military: keeping standing armies in peacetime without the consent of the legislatures, quartering troops among the population, and protecting soldiers from punishment by mock trial. Several concern trade and taxation, including cutting off commerce with the rest of the world and imposing taxes without consent. The final group concerns the conduct of the war then underway.
+
+One passage was removed before adoption. Jefferson's draft included a charge accusing the King of waging cruel war against human nature itself by sustaining the transatlantic slave trade. Delegates from South Carolina and Georgia objected, and northern delegates whose merchants had profited from the trade did not press the point. The passage was struck. The deletion is important to study directly, because it shows that the contradiction between the document's premises and the institution of slavery was visible and argued over at the time, not only in hindsight.
+
+## 4.4 Adoption and Signing
+
+Congress voted to approve Lee's resolution of independence on 2 July 1776. John Adams, writing to his wife Abigail the next day, predicted that the second of July would be celebrated by succeeding generations as the great anniversary festival. He was wrong about the date, because the text of the Declaration itself was debated for two more days and approved on 4 July, and it was the fourth that the printed copies carried and that the public came to observe.
+
+The famous engrossed copy on parchment, the one bearing the large signature of John Hancock, was not signed on 4 July. Congress ordered it prepared on 19 July and most delegates signed it on 2 August 1776; a few added their names later still. Fifty-six delegates signed in total. The printed broadsides distributed in early July, by contrast, carried only the names of Hancock as president of Congress and Charles Thomson as secretary.
+
+## 4.5 What the Document Did and Did Not Do
+
+The Declaration dissolved the colonies' allegiance to the Crown and asserted their standing as independent states with the power to make war, conclude peace, and form alliances. That last power mattered immediately and practically: a rebellious province could not sign a treaty, but an independent state could, and the alliance with France concluded in 1778 was decisive for the outcome of the war.
+
+The Declaration did not create a national government, and it is not a legal constitution. It established no branches, no offices, and no procedures. The Articles of Confederation, drafted in 1777 and ratified in 1781, were the first attempt at a framework, and the Constitution written in 1787 replaced them. Students often merge these documents together; keeping their dates and their functions separate is one of the most reliable ways to avoid confusion on an examination.
+
+Nor did the Declaration extend its stated premises to everyone living in the new states. Enslaved people, Native nations, and women were excluded from its practical operation. Later movements returned to the document precisely because its premises were stated so broadly. Abolitionists in the 1840s and 1850s quoted the second paragraph against the slaveholding republic that had produced it, and the organisers of the 1848 Seneca Falls Convention deliberately modelled their Declaration of Sentiments on its structure and language. The text's afterlife has therefore been as consequential as its original act of separation.

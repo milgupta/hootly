@@ -1,0 +1,45 @@
+{
+  "id": "biology_cell_structure",
+  "source": "biology_cell_structure.txt",
+  "course": "Intro Biology",
+  "subject": "biology",
+  "study_level": "college",
+  "familiarity": "some",
+  "chunk_id_prefix": "b10c",
+  "min_chunks": 3,
+  "must_appear_topics": [
+    "cell theory",
+    "prokaryotic",
+    "eukaryotic",
+    "phospholipid bilayer",
+    "selectively permeable",
+    "nucleus",
+    "ribosome",
+    "endoplasmic reticulum",
+    "golgi",
+    "lysosome",
+    "mitochondri",
+    "chloroplast",
+    "cytoskeleton",
+    "cell wall"
+  ],
+  "must_not_appear_claims": [
+    "ribosomes are enclosed in a double membrane",
+    "prokaryotic cells contain a membrane-bound nucleus",
+    "the golgi apparatus produces atp",
+    "mitochondria have a single membrane",
+    "lysosomes maintain an internal ph of nine",
+    "chloroplasts are found in animal cells",
+    "the plasma membrane is freely permeable to all molecules",
+    "dna is stored in the ribosome"
+  ],
+  "thresholds": {
+    "schema_validity": 1.0,
+    "citation_coverage": 0.95,
+    "answer_key_pass_rate": 0.9,
+    "fill_blank_leaks": 0,
+    "min_note_sections": 3,
+    "min_cards": 5,
+    "min_questions": 8
+  }
+}

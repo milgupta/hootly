@@ -1,0 +1,184 @@
+{
+  "_comment": "Deterministic recorded model output for the biology golden-set text. Chunk prefixes are the first 8 hex chars of the deterministic chunk uuids built in tests/ai/helpers.ts (b10c0000..b10c000N). Regenerate with `OPENAI_API_KEY=... npm run eval:ai` and the live block if prompts change.",
+  "notes_outline": {
+    "sections": [
+      { "heading": "The Cell as the Unit of Life", "covers_chunk_ids": ["b10c0000"] },
+      { "heading": "Prokaryotic vs Eukaryotic Cells", "covers_chunk_ids": ["b10c0000", "b10c0001"] },
+      { "heading": "The Plasma Membrane", "covers_chunk_ids": ["b10c0001"] },
+      { "heading": "The Endomembrane System", "covers_chunk_ids": ["b10c0002"] },
+      { "heading": "Energy Organelles and the Cytoskeleton", "covers_chunk_ids": ["b10c0002", "b10c0003"] }
+    ]
+  },
+  "note_sections": [
+    {
+      "heading": "The Cell as the Unit of Life",
+      "body_md": "### What a cell is\n\nA **cell** is the smallest arrangement of matter that carries out every activity associated with being alive [chunk:b10c0000]. Some organisms complete their entire life cycle as a single cell, while plants and animals are assemblies of trillions of specialised cells [chunk:b10c0000].\n\n### Cell theory\n\nThe **cell theory** holds that all living organisms are composed of one or more cells [chunk:b10c0000]. It further holds that the cell is the basic unit of structure and organisation in organisms [chunk:b10c0000]. Its third statement, that cells arise only from pre-existing cells by division, was the last to be established [chunk:b10c0000].\n\n### Why cells stay small\n\nAs a sphere grows, volume increases with the cube of the radius while surface area increases only with the square [chunk:b10c0000]. A cell that doubles in radius therefore has eight times as much interior to supply but only four times as much membrane to supply it through [chunk:b10c0000]. This surface-area-to-volume constraint is why most cells measure between one and one hundred micrometres across [chunk:b10c0000].",
+      "source_chunk_ids": ["b10c0000"]
+    },
+    {
+      "heading": "Prokaryotic vs Eukaryotic Cells",
+      "body_md": "### The dividing line\n\n**Prokaryotic** cells keep their DNA in an irregular cytoplasmic region called the nucleoid, with no membrane separating it from the rest of the interior [chunk:b10c0000]. **Eukaryotic** cells enclose their DNA inside a true nucleus bounded by a double membrane [chunk:b10c0000].\n\n### Compartmentalisation\n\nEukaryotic cells are filled with membrane-bound organelles, each maintaining chemical conditions different from the surrounding cytoplasm [chunk:b10c0001]. Compartmentalisation lets a eukaryotic cell run incompatible reactions simultaneously in different places [chunk:b10c0001]. Prokaryotic cells manage without this internal partitioning, which is one reason they are typically ten times smaller in diameter [chunk:b10c0001].\n\n### What both share\n\nBoth categories are bounded by a plasma membrane, contain cytoplasm, carry hereditary information in DNA, and build proteins on ribosomes [chunk:b10c0001]. Ribosomes in prokaryotes are somewhat smaller than those in eukaryotes [chunk:b10c0001].",
+      "source_chunk_ids": ["b10c0000", "b10c0001"]
+    },
+    {
+      "heading": "The Plasma Membrane",
+      "body_md": "### Structure\n\nThe plasma membrane is a **phospholipid bilayer** studded with proteins [chunk:b10c0001]. Each phospholipid has a phosphate head attracted to water and two fatty acid tails repelled by it, so in water the molecules arrange themselves spontaneously into a double sheet [chunk:b10c0001]. No energy input is required, because that arrangement is simply the lowest-energy configuration available [chunk:b10c0001].\n\n### Selective permeability\n\nSmall non-polar molecules such as oxygen and carbon dioxide pass through the fatty interior unaided, while ions and large polar molecules must cross through protein channels and transporters [chunk:b10c0001]. **Passive transport** moves substances down a concentration gradient at no energy cost, whereas **active transport** consumes ATP to push them against their gradient [chunk:b10c0001]. The sodium-potassium pump exports three sodium ions for every two potassium ions it imports [chunk:b10c0001].\n\n### Fluid mosaic model\n\nBecause the phospholipids are not bonded to one another they drift laterally, so the membrane behaves as a two-dimensional fluid with proteins floating in it [chunk:b10c0001]. This is why membranes can heal small punctures, fuse, and pinch off into vesicles [chunk:b10c0001].",
+      "source_chunk_ids": ["b10c0001"]
+    },
+    {
+      "heading": "The Endomembrane System",
+      "body_md": "### Nucleus and ribosomes\n\nThe **nucleus** is the largest organelle in most animal cells and holds nearly all of the cell's DNA behind a double membrane called the nuclear envelope [chunk:b10c0002]. DNA is wound around histone proteins into chromatin, which condenses into visible chromosomes only when the cell prepares to divide [chunk:b10c0002]. **Ribosomes** are the sites of protein synthesis and, unlike the other structures here, are not bounded by a membrane [chunk:b10c0002].\n\n### ER and Golgi\n\nRough endoplasmic reticulum is studded with ribosomes and folds and chemically tags newly made proteins [chunk:b10c0002]. Smooth endoplasmic reticulum synthesises lipids, stores calcium ions, and detoxifies drugs and metabolic byproducts [chunk:b10c0002]. The **Golgi apparatus** sorts, modifies, and packages proteins for delivery, taking material in on the face nearest the endoplasmic reticulum [chunk:b10c0002].\n\n### Lysosomes\n\nLysosomes are membrane-bound sacs of digestive enzymes held at an interior pH near five, well below the neutral cytoplasm around them [chunk:b10c0002]. Because those enzymes work poorly at cytoplasmic pH, a leaking lysosome does comparatively little damage [chunk:b10c0002].",
+      "source_chunk_ids": ["b10c0002"]
+    },
+    {
+      "heading": "Energy Organelles and the Cytoskeleton",
+      "body_md": "### Mitochondria\n\n**Mitochondria** carry out cellular respiration, the controlled oxidation of sugars that transfers energy into ATP [chunk:b10c0002]. Each has a smooth outer membrane and an inner membrane folded into cristae, and the folding matters because oxidative phosphorylation happens on that inner membrane [chunk:b10c0002].\n\n### Chloroplasts\n\n**Chloroplasts** occur in plants and algae and carry out photosynthesis, capturing light energy to build sugars from carbon dioxide and water [chunk:b10c0003]. They contain stacked discs called thylakoids where chlorophyll is concentrated, suspended in a fluid called the stroma [chunk:b10c0003]. Both mitochondria and chloroplasts hold their own circular DNA and ribosomes and divide independently, which is the evidence behind the **endosymbiotic theory** [chunk:b10c0003].\n\n### Cytoskeleton and cell wall\n\nThe cytoskeleton is a network of protein filaments that gives the cell shape, anchors organelles, and provides tracks for motor proteins [chunk:b10c0003]. Microtubules are hollow tubes of tubulin that form the spindle separating chromosomes during division [chunk:b10c0003]. Plant cells add a rigid cell wall built mainly of cellulose, which resists the turgor pressure that holds a non-woody plant upright [chunk:b10c0003]. Animal cells have no wall and depend on the cytoskeleton for structural support.\n\n> Not in your materials: the detailed steps of glycolysis and the Calvin cycle.",
+      "source_chunk_ids": ["b10c0002", "b10c0003"]
+    }
+  ],
+  "cards": {
+    "cards": [
+      { "kind": "basic", "front": "What are the three statements of the cell theory?", "back": "All organisms are made of cells; the cell is the basic unit of structure and organisation; cells arise only from pre-existing cells.", "source_chunk_ids": ["b10c0000"] },
+      { "kind": "basic", "front": "Why does the surface-area-to-volume ratio limit how large a cell can grow?", "back": "Volume grows with the cube of the radius but surface area only with the square, so a large cell cannot exchange nutrients and wastes fast enough.", "source_chunk_ids": ["b10c0000"] },
+      { "kind": "reversed", "front": "Nucleoid", "back": "The irregular cytoplasmic region where a prokaryotic cell keeps its DNA, with no surrounding membrane.", "source_chunk_ids": ["b10c0000"] },
+      { "kind": "cloze", "front": "The plasma membrane is a {{c1::phospholipid bilayer}} studded with proteins.", "back": "phospholipid bilayer", "source_chunk_ids": ["b10c0001"] },
+      { "kind": "basic", "front": "How does active transport differ from passive transport?", "back": "Active transport consumes ATP to move a substance against its concentration gradient; passive transport follows the gradient at no energy cost.", "source_chunk_ids": ["b10c0001"] },
+      { "kind": "basic", "front": "Which organelle sorts, modifies, and packages proteins for delivery?", "back": "The Golgi apparatus.", "source_chunk_ids": ["b10c0002"] },
+      { "kind": "cloze", "front": "Oxidative phosphorylation takes place on the inner membrane of the {{c1::mitochondrion}}.", "back": "mitochondrion", "source_chunk_ids": ["b10c0002"] },
+      { "kind": "basic", "front": "What evidence supports the endosymbiotic theory?", "back": "Mitochondria and chloroplasts have their own circular DNA and ribosomes and divide independently of the host cell.", "source_chunk_ids": ["b10c0003"] },
+      { "kind": "reversed", "front": "Turgor pressure", "back": "The outward pressure from a water-filled central vacuole that the cellulose cell wall resists, holding a non-woody plant upright.", "source_chunk_ids": ["b10c0003"] }
+    ]
+  },
+  "quiz": {
+    "title": "Cell Structure and the Organelles — Quiz",
+    "questions": [
+      {
+        "qtype": "mcq",
+        "topic": "The Cell as the Unit of Life",
+        "prompt": "A spherical cell doubles its radius. By what factor does the interior volume it must supply increase relative to the membrane area available for exchange?",
+        "options": ["The volume doubles while the area stays fixed", "The volume increases eightfold while the area increases fourfold", "Both increase fourfold", "Both increase eightfold"],
+        "answer": "The volume increases eightfold while the area increases fourfold",
+        "explanation": "Volume scales with the cube of the radius and surface area with the square, so doubling the radius gives eight times the volume but only four times the area [chunk:b10c0000].",
+        "source_chunk_ids": ["b10c0000"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "mcq",
+        "topic": "Prokaryotic vs Eukaryotic Cells",
+        "prompt": "Which feature is present in eukaryotic cells but absent from prokaryotic cells?",
+        "options": ["A plasma membrane", "Ribosomes", "DNA as the hereditary molecule", "A nucleus bounded by a double membrane"],
+        "answer": "A nucleus bounded by a double membrane",
+        "explanation": "Prokaryotes keep their DNA in a nucleoid with no surrounding membrane, while eukaryotes enclose it in a true nucleus; membranes, ribosomes and DNA are common to both [chunk:b10c0000].",
+        "source_chunk_ids": ["b10c0000", "b10c0001"],
+        "difficulty": 1
+      },
+      {
+        "qtype": "mcq",
+        "topic": "The Plasma Membrane",
+        "prompt": "Why do phospholipids form a bilayer spontaneously in water?",
+        "options": ["Because ATP hydrolysis drives the assembly", "Because it is the lowest-energy configuration for heads attracted to water and tails repelled by it", "Because membrane proteins bond them together", "Because the cell wall forces them into sheets"],
+        "answer": "Because it is the lowest-energy configuration for heads attracted to water and tails repelled by it",
+        "explanation": "The arrangement requires no energy input; it is simply the lowest-energy configuration available to molecules with a water-attracted head and water-repelled tails [chunk:b10c0001].",
+        "source_chunk_ids": ["b10c0001"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "mcq",
+        "topic": "Energy Organelles and the Cytoskeleton",
+        "prompt": "The inner mitochondrial membrane is folded into cristae. What is the functional consequence?",
+        "options": ["It stores the mitochondrial DNA", "It multiplies the area available for oxidative phosphorylation", "It keeps the matrix acidic", "It anchors the cell to neighbouring cells"],
+        "answer": "It multiplies the area available for oxidative phosphorylation",
+        "explanation": "Oxidative phosphorylation occurs on the inner membrane, so folding it into cristae multiplies the productive area [chunk:b10c0002].",
+        "source_chunk_ids": ["b10c0002"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "true_false",
+        "topic": "The Endomembrane System",
+        "prompt": "Ribosomes are enclosed by their own membrane, like the other organelles described in this chapter.",
+        "options": ["True", "False"],
+        "answer": "False",
+        "explanation": "Ribosomes are complexes of RNA and protein and, unlike most structures in the chapter, are not bounded by a membrane [chunk:b10c0002].",
+        "source_chunk_ids": ["b10c0002"],
+        "difficulty": 1
+      },
+      {
+        "qtype": "true_false",
+        "topic": "Prokaryotic vs Eukaryotic Cells",
+        "prompt": "Compartmentalisation allows a eukaryotic cell to run chemically incompatible reactions at the same time.",
+        "options": ["True", "False"],
+        "answer": "True",
+        "explanation": "Membrane-bound compartments maintain conditions different from the cytoplasm, so incompatible reactions can proceed simultaneously in different places [chunk:b10c0001].",
+        "source_chunk_ids": ["b10c0001"],
+        "difficulty": 1
+      },
+      {
+        "qtype": "fill_blank",
+        "topic": "The Endomembrane System",
+        "prompt": "Digestive enzymes are held inside membrane-bound sacs at an interior pH near five; these sacs are called ______.",
+        "answer": "lysosomes",
+        "explanation": "The chapter describes these acidic enzyme-filled sacs, which recycle worn-out organelles and engulfed bacteria [chunk:b10c0002].",
+        "source_chunk_ids": ["b10c0002"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "fill_blank",
+        "topic": "Energy Organelles and the Cytoskeleton",
+        "prompt": "The rigid outer layer of a plant cell is built mainly from ______, and it resists the outward pressure of the water-filled central vacuole.",
+        "answer": "cellulose",
+        "explanation": "The plant cell wall is built mainly of this polysaccharide and resists turgor pressure [chunk:b10c0003].",
+        "source_chunk_ids": ["b10c0003"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "short_answer",
+        "topic": "Energy Organelles and the Cytoskeleton",
+        "prompt": "State two pieces of evidence given for the endosymbiotic theory.",
+        "answer": "Mitochondria and chloroplasts have their own circular DNA and their own ribosomes, and they divide independently of the cell.",
+        "explanation": "Both organelles retain prokaryote-like genetic machinery and divide on their own schedule, which is what the theory predicts [chunk:b10c0003].",
+        "source_chunk_ids": ["b10c0003"],
+        "difficulty": 3
+      },
+      {
+        "qtype": "mcq",
+        "topic": "The Plasma Membrane",
+        "prompt": "For every two potassium ions the sodium-potassium pump imports, how many sodium ions does it export?",
+        "options": ["One", "Two", "Three", "Four"],
+        "answer": "Two",
+        "explanation": "The pump moves sodium out and potassium in against their gradients using ATP [chunk:b10c0001].",
+        "source_chunk_ids": ["b10c0001"],
+        "difficulty": 2
+      }
+    ]
+  },
+  "plan": {
+    "items": [
+      { "idx": 0, "title": "Read: The Cell as the Unit of Life", "kind": "read_note", "topic": "The Cell as the Unit of Life", "due_date": "2026-08-07" },
+      { "idx": 1, "title": "Read: Prokaryotic vs Eukaryotic Cells", "kind": "read_note", "topic": "Prokaryotic vs Eukaryotic Cells", "due_date": "2026-08-08" },
+      { "idx": 2, "title": "Review 20 cards", "kind": "review_cards", "topic": "Cell basics", "due_date": "2026-08-09" },
+      { "idx": 3, "title": "Read: The Plasma Membrane", "kind": "read_note", "topic": "The Plasma Membrane", "due_date": "2026-08-10" },
+      { "idx": 4, "title": "Quiz: cells and membranes", "kind": "take_quiz", "topic": "The Plasma Membrane", "due_date": "2026-08-11" },
+      { "idx": 5, "title": "Read: The Endomembrane System", "kind": "read_note", "topic": "The Endomembrane System", "due_date": "2026-08-12" },
+      { "idx": 6, "title": "Practice exam: full chapter", "kind": "take_exam", "topic": "Cell Structure", "due_date": "2026-08-14" }
+    ]
+  },
+  "groundedness": [
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 1 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 0.95 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 1 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 0.92 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": false }], "overall_supported_pct": 0.88 }
+  ],
+  "answer_key_verdicts": [
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Cube/square scaling is stated explicitly in the sources." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Only the nucleus distinguishes the two; the other options are shared features." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The sources state no energy input is required." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Cristae multiply the area for oxidative phosphorylation per the sources." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The sources state ribosomes are not membrane-bound." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Matches the compartmentalisation paragraph." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Answer does not appear in the prompt and is the only reasonable fill." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Cellulose is named in the sources as the main wall material." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Both pieces of evidence appear verbatim in the sources." },
+    { "correct": false, "well_formed": true, "explanation_ok": false, "reason": "The sources state the pump exports THREE sodium ions for every two potassium ions imported; the claimed answer of two is wrong." }
+  ]
+}
