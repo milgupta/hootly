@@ -92,16 +92,26 @@ export function chunkBlocks(blocks: SourceBlock[]): PreparedChunk[] {
       end_seconds: last.end ?? last.start,
       token_count: estimateTokens(content),
     });
-    // 15% overlap: keep trailing paragraphs into the next chunk.
+    // 15% overlap: carry trailing paragraphs into the next chunk. At least the
+    // last paragraph is always carried — a real textbook paragraph is bigger than
+    // the 120-token target, and a strict target check would silently produce ZERO
+    // overlap for every realistic document. Index 0 is never carried, so each
+    // flush always makes forward progress.
     const overlapTarget = CHUNK_TOKENS * OVERLAP_RATIO;
     const kept: Para[] = [];
     let keptTokens = 0;
-    for (let i = current.length - 1; i >= 0; i--) {
+    for (let i = current.length - 1; i >= 1; i--) {
       const p = current[i]!;
       const t = estimateTokens(p.text);
-      if (keptTokens + t > overlapTarget) break;
+      if (kept.length > 0 && keptTokens + t > overlapTarget) break;
       kept.unshift(p);
       keptTokens += t;
+      if (keptTokens >= overlapTarget) break;
+    }
+    // An overlap larger than half a chunk would mostly re-emit the previous chunk.
+    if (keptTokens > CHUNK_TOKENS / 2) {
+      kept.length = 0;
+      keptTokens = 0;
     }
     current = kept;
     currentTokens = keptTokens;
