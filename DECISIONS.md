@@ -6,3 +6,9 @@
 - Tailwind v4 tokens: mapped docs/03 §9 CSS vars into `@theme` as `--color-*`/`--radius-*`/`--shadow-*` names so Tailwind utilities (`bg-primary`, `rounded-card`, `shadow-xs`) resolve to spec values.
 - Inter loaded via next/font/google with `--font-inter` variable (spec: Inter variable via next/font); JetBrains Mono left as CSS stack fallback (no code-heavy surfaces at launch).
 - Typography scale exposed as `.text-h1`-style utility classes in globals.css (docs/03 §2 sizes) rather than Tailwind font-size theme to keep line-height/weight/tracking bundled per spec row.
+- Migration split: 0001 is docs/04 §4 verbatim (templates expanded per listed tables); 0002 adds columns screens require but 0001 lacks: profiles.marketing_emails (privacy toggle, 05 §8) and study_plan_items.moved_from ("moved from {day}" note, 05 §7.7 — no column existed for the annotation).
+- Doc conflict flagged: 04 §4 says course soft-delete stamps deleted_at on "plan items"/sections/questions, but those tables have no deleted_at column in the schema — children are gated by their parent row instead (comment in lib/trash.ts).
+- Soft-delete cascade implemented server-side (admin client) since several child tables are Class B (client can't write them); cascade group = matching timestamp, per 04 §4 restore semantics.
+- Realtime private-channel auth implemented as an RLS policy on realtime.messages topics 'job:{materialId|courseId}' (Supabase broadcast-authorization pattern; 04 §8 names the requirement, not the mechanism).
+- New-course entry point outside onboarding: dashed dashboard card opens a small name+exam-date modal, then routes to the course's Materials tab with the upload modal open (no dedicated screen specced).
+- Course emoji auto-suggest returns 📚 whenever OPENAI_API_KEY is absent or the model reply isn't a bare emoji.
