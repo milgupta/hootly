@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
@@ -47,8 +47,10 @@ export function SettingsScreen({
   email: string;
 }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { toast } = useToast();
   const [tab, setTab] = React.useState<string>(initialTab);
+  const refundAcked = React.useRef(false);
   const [name, setName] = React.useState(profile?.display_name ?? "");
   const [level, setLevel] = React.useState(profile?.study_level ?? "");
   const [marketing, setMarketing] = React.useState(
@@ -64,6 +66,17 @@ export function SettingsScreen({
     setTab(v);
     router.replace(`/settings?tab=${v}`, { scroll: false });
   }
+
+  // /api/refund redirects with ?refunded=1 — confirm it, don't leave the user guessing.
+  React.useEffect(() => {
+    if (searchParams.get("refunded") !== "1" || refundAcked.current) return;
+    refundAcked.current = true;
+    toast("Refunded in full. It'll land back on your card in 5–10 business days.", {
+      kind: "success",
+      durationMs: 8000,
+    });
+    router.replace("/settings?tab=billing", { scroll: false });
+  }, [searchParams, toast, router]);
 
   function saveProfile() {
     startTransition(async () => {

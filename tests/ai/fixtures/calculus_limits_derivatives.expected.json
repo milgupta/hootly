@@ -35,6 +35,12 @@
     "the derivative of a constant is one",
     "the limit of sine of x over x as x approaches zero is zero"
   ],
+  "must_not_appear_patterns": [
+    "\\bevery continuous function is differentiable\\b",
+    "\\babsolute value function is differentiable\\b",
+    "\\bderivative of a constant is (one|1)\\b",
+    "\\bsine? of x (divided by|over) x[^.?!]{0,40}\\bis zero\\b"
+  ],
   "thresholds": {
     "schema_validity": 1.0,
     "citation_coverage": 0.95,

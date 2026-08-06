@@ -64,7 +64,12 @@ const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY ?? "";
 const EMBED_MODEL = process.env.OPENAI_MODEL_EMBED ?? "text-embedding-3-small";
 
-if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
+/** `npm run seed -- --dry-run` prints exactly what WOULD be written (including the
+ *  replayed FSRS state distribution) and touches no database. It is the only way to
+ *  sanity-check the seed on a machine with no Supabase project. */
+const DRY_RUN = process.argv.includes("--dry-run");
+
+if (!DRY_RUN && (!SUPABASE_URL || !SERVICE_ROLE_KEY)) {
   const missing = [
     !SUPABASE_URL && "NEXT_PUBLIC_SUPABASE_URL",
     !SERVICE_ROLE_KEY && "SUPABASE_SERVICE_ROLE_KEY",
@@ -85,15 +90,21 @@ if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
       "    4. Re-run: npm run seed",
       "",
       "  The service-role key is a server-only secret — never expose it to the client.",
+      "  To inspect what the seed would create without a project: npm run seed -- --dry-run",
       "",
     ].join("\n")
   );
   process.exit(1);
 }
 
-const db: SupabaseClient = createClient(SUPABASE_URL, SERVICE_ROLE_KEY, {
-  auth: { autoRefreshToken: false, persistSession: false },
-});
+/** Lazy so `--dry-run` never constructs a client (supabase-js rejects a blank URL). */
+let client: SupabaseClient | null = null;
+function db(): SupabaseClient {
+  client ??= createClient(SUPABASE_URL, SERVICE_ROLE_KEY, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
+  return client;
+}
 
 /* ── demo account ─────────────────────────────────────────────────────────── */
 
@@ -102,7 +113,7 @@ const DEMO_EMAIL = "demo@hootly.app";
 const DEMO_PASSWORD = "hootly-demo-2026";
 const DEMO_NAME = "Demo Student";
 
-/* ── course content (hand-written, ~1,240 words) ──────────────────────────── */
+/* ── course content (hand-written, ~1,170 words) ──────────────────────────── */
 
 const MATERIAL_TITLE = "Unit 3 — Metabolism: Cellular Respiration and Photosynthesis";
 
@@ -241,6 +252,9 @@ interface CardSpec {
   state: DemoState;
   /** Days from now the card should next fall due (negative = overdue). */
   dueInDays: number;
+  /** Extra successful reviews past the minimum needed to reach `state`, so the
+   *  seeded deck has a spread of stabilities and intervals rather than 25 clones. */
+  depth?: number;
   favorited?: boolean;
 }
 
@@ -259,24 +273,24 @@ const CARD_SPECS: readonly CardSpec[] = [
   { front: "Net ATP yield of glycolysis per glucose?", back: "2 ATP (4 produced minus 2 invested), plus 2 NADH and 2 pyruvate.", chunks: [2], state: "learning", dueInDays: 0, favorited: true },
   { front: "How many carbons are in pyruvate?", back: "Three. Glucose (6C) splits into two 3-carbon pyruvate molecules.", chunks: [2], state: "learning", dueInDays: 0 },
   { front: "What is released when pyruvate becomes acetyl-CoA?", back: "One CO₂, plus one NADH as the two-carbon fragment is oxidised.", chunks: [3], state: "learning", dueInDays: 0 },
-  { front: "Where does the CO₂ you exhale actually come from?", back: "Pyruvate oxidation and the citric acid cycle — not from the O₂ you inhale.", chunks: [4], state: "relearning", dueInDays: 0 },
+  { front: "Where does the CO₂ you exhale actually come from?", back: "Pyruvate oxidation and the citric acid cycle — not from the O₂ you inhale.", chunks: [4], state: "relearning", dueInDays: 0, depth: 1 },
 
   // ── Reviewing (7) — graduated, interval still under 21 days ─────────────
-  { front: "Per turn, what does the citric acid cycle harvest?", back: "3 NADH, 1 FADH₂, 1 ATP/GTP, and it releases 2 CO₂.", chunks: [4], state: "reviewing", dueInDays: 0 },
-  { front: "How many times does the citric acid cycle turn per glucose?", back: "Twice — one turn per pyruvate.", chunks: [4], state: "reviewing", dueInDays: 1 },
-  { front: "Why does FADH₂ yield less ATP than NADH?", back: "It enters at Complex II, downstream of Complex I, so it skips one proton-pumping site.", chunks: [5], state: "reviewing", dueInDays: 2, favorited: true },
-  { front: "What is the final electron acceptor in aerobic respiration?", back: "Oxygen — it collects spent electrons and protons to form water.", chunks: [5], state: "reviewing", dueInDays: 3 },
-  { front: "What is the proton-motive force?", back: "The combined concentration and charge gradient of H⁺ across the inner mitochondrial membrane.", chunks: [6], state: "reviewing", dueInDays: 5 },
-  { front: "Roughly how many protons does ATP synthase need per ATP?", back: "About four.", chunks: [6], state: "reviewing", dueInDays: 8 },
-  { front: "What does cyanide block?", back: "Complex IV of the electron transport chain, stopping electron flow to oxygen.", chunks: [6], state: "reviewing", dueInDays: 12 },
+  { front: "Per turn, what does the citric acid cycle harvest?", back: "3 NADH, 1 FADH₂, 1 ATP/GTP, and it releases 2 CO₂.", chunks: [4], state: "reviewing", dueInDays: 0, depth: 0 },
+  { front: "How many times does the citric acid cycle turn per glucose?", back: "Twice — one turn per pyruvate.", chunks: [4], state: "reviewing", dueInDays: 1, depth: 1 },
+  { front: "Why does FADH₂ yield less ATP than NADH?", back: "It enters at Complex II, downstream of Complex I, so it skips one proton-pumping site.", chunks: [5], state: "reviewing", dueInDays: 2, depth: 1, favorited: true },
+  { front: "What is the final electron acceptor in aerobic respiration?", back: "Oxygen — it collects spent electrons and protons to form water.", chunks: [5], state: "reviewing", dueInDays: 3, depth: 2 },
+  { front: "What is the proton-motive force?", back: "The combined concentration and charge gradient of H⁺ across the inner mitochondrial membrane.", chunks: [6], state: "reviewing", dueInDays: 5, depth: 2 },
+  { front: "Roughly how many protons does ATP synthase need per ATP?", back: "About four.", chunks: [6], state: "reviewing", dueInDays: 8, depth: 3 },
+  { front: "What does cyanide block?", back: "Complex IV of the electron transport chain, stopping electron flow to oxygen.", chunks: [6], state: "reviewing", dueInDays: 12, depth: 3 },
 
   // ── Mastered (6) — state 2 with a scheduled interval past 21 days ───────
-  { front: "Summary equation for cellular respiration?", back: "C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O + energy.", chunks: [1], state: "mastered", dueInDays: 24 },
-  { front: "Which three stages make up cellular respiration?", back: "Glycolysis, pyruvate oxidation with the citric acid cycle, and oxidative phosphorylation.", chunks: [1], state: "mastered", dueInDays: 28 },
-  { front: "Modern ATP yield per glucose?", back: "About 30–32 — not the older textbook 36–38.", chunks: [7], state: "mastered", dueInDays: 31 },
-  { front: "Working ATP values per NADH and per FADH₂?", back: "About 2.5 ATP per matrix NADH and about 1.5 per FADH₂.", chunks: [7], state: "mastered", dueInDays: 35 },
-  { front: "What is the one job of fermentation?", back: "Regenerating NAD⁺ so glycolysis can keep running. It makes no extra ATP itself.", chunks: [8], state: "mastered", dueInDays: 40 },
-  { front: "What is the Cori cycle?", back: "The liver taking up muscle lactate and reconverting it to glucose — lactate is recycled, not waste.", chunks: [8], state: "mastered", dueInDays: 45 },
+  { front: "Summary equation for cellular respiration?", back: "C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O + energy.", chunks: [1], state: "mastered", dueInDays: 24, depth: 0 },
+  { front: "Which three stages make up cellular respiration?", back: "Glycolysis, pyruvate oxidation with the citric acid cycle, and oxidative phosphorylation.", chunks: [1], state: "mastered", dueInDays: 28, depth: 1 },
+  { front: "Modern ATP yield per glucose?", back: "About 30–32 — not the older textbook 36–38.", chunks: [7], state: "mastered", dueInDays: 31, depth: 1 },
+  { front: "Working ATP values per NADH and per FADH₂?", back: "About 2.5 ATP per matrix NADH and about 1.5 per FADH₂.", chunks: [7], state: "mastered", dueInDays: 35, depth: 2 },
+  { front: "What is the one job of fermentation?", back: "Regenerating NAD⁺ so glycolysis can keep running. It makes no extra ATP itself.", chunks: [8], state: "mastered", dueInDays: 40, depth: 2 },
+  { front: "What is the Cori cycle?", back: "The liver taking up muscle lactate and reconverting it to glucose — lactate is recycled, not waste.", chunks: [8], state: "mastered", dueInDays: 45, depth: 3 },
 ] as const;
 
 /* ── quiz (all four qtypes) ───────────────────────────────────────────────── */
@@ -501,7 +515,7 @@ interface SimulatedCard {
  * exactly where the demo wants it. Nothing is hand-faked: stability, difficulty and
  * scheduled_days are whatever ts-fsrs actually computed.
  */
-function simulate(state: DemoState, dueInDays: number): SimulatedCard {
+function simulate(state: DemoState, dueInDays: number, depth = 0): SimulatedCard {
   // Start far enough back that the replayed history sits in the past.
   let clock = new Date(Date.now() - 120 * DAY_MS);
   let row = emptyFsrsRow(clock);
@@ -518,17 +532,22 @@ function simulate(state: DemoState, dueInDays: number): SimulatedCard {
       apply(3); // Good → still in learning steps
     } else if (state === "reviewing") {
       for (let i = 0; i < 8 && row.fsrs_state !== 2; i += 1) apply(3);
-      // Nudge back under the 21-day Mastered threshold if a lucky roll overshot.
+      // Extra Goods build stability, but stop short of the 21-day Mastered threshold.
+      for (let i = 0; i < depth && row.fsrs_scheduled_days < 8; i += 1) apply(3);
+      // Nudge back under the threshold if a lucky roll overshot.
       for (let i = 0; i < 3 && row.fsrs_scheduled_days >= 21; i += 1) apply(1);
       if (row.fsrs_state !== 2) apply(3);
     } else if (state === "relearning") {
       for (let i = 0; i < 8 && row.fsrs_state !== 2; i += 1) apply(3);
+      for (let i = 0; i < depth; i += 1) apply(3);
       apply(1); // Again → Relearning
     } else {
-      // mastered: Easy until the scheduled interval clears 21 days
+      // mastered: Easy until the scheduled interval clears 21 days, then `depth` Goods
+      // (Easy compounds into decade-long intervals that no demo deck should show).
       for (let i = 0; i < 15 && !(row.fsrs_state === 2 && row.fsrs_scheduled_days >= 21); i += 1) {
         apply(4);
       }
+      for (let i = 0; i < depth && row.fsrs_scheduled_days < 120; i += 1) apply(3);
     }
   }
 
@@ -574,7 +593,7 @@ async function embedChunks(texts: readonly string[]): Promise<string[] | null> {
 
 async function findDemoUserId(): Promise<string | null> {
   for (let page = 1; page <= 20; page += 1) {
-    const { data, error } = await db.auth.admin.listUsers({ page, perPage: 200 });
+    const { data, error } = await db().auth.admin.listUsers({ page, perPage: 200 });
     assertOk("listUsers", error);
     const match = data.users.find((u) => u.email?.toLowerCase() === DEMO_EMAIL);
     if (match) return match.id;
@@ -583,19 +602,62 @@ async function findDemoUserId(): Promise<string | null> {
   return null;
 }
 
+/** --dry-run: replay the FSRS histories and print the plan; write nothing. */
+function dryRun(): void {
+  console.log("\n🦉 Hootly seed — DRY RUN (nothing is written)\n");
+  console.log(`  Demo login   ${DEMO_EMAIL} / ${DEMO_PASSWORD}`);
+  console.log(`  Course       BIO 172 — Human Physiology · exam ${dateOnly(21)}`);
+  console.log(
+    `  Material     1 pasted · ${CHUNK_TEXTS.length} chunks · ${RAW_TEXT.split(/\s+/).length} words · embeddings ${
+      OPENAI_API_KEY ? `WOULD be generated (${EMBED_MODEL})` : "WOULD be null (no OPENAI_API_KEY)"
+    }`
+  );
+  console.log(`  Note         1 · ${NOTE_SECTIONS.length} sections`);
+  console.log(`  Quiz         1 · ${QUESTION_SPECS.length} questions`);
+  console.log(`  Plan         ${PLAN_SPECS.length} items\n`);
+  console.log("  Flashcards (state replayed through ts-fsrs, not hand-written):");
+
+  const counts: Record<string, number> = {};
+  let reviewRowCount = 0;
+  let dueNow = 0;
+  for (const spec of CARD_SPECS) {
+    const { row, reviews } = simulate(spec.state, spec.dueInDays, spec.depth ?? 0);
+    const ui = uiState(row);
+    counts[ui] = (counts[ui] ?? 0) + 1;
+    reviewRowCount += reviews.length;
+    const due = new Date(row.fsrs_due);
+    if (due.getTime() <= Date.now()) dueNow += 1;
+    console.log(
+      `    ${ui.padEnd(9)} state=${row.fsrs_state} sched=${String(row.fsrs_scheduled_days).padStart(
+        3
+      )}d reps=${row.fsrs_reps} due=${due.toISOString().slice(0, 10)}  ${spec.front.slice(0, 46)}`
+    );
+  }
+  console.log(
+    `\n  Totals: ${CARD_SPECS.length} cards · Learning ${counts["Learning"] ?? 0} · Reviewing ${
+      counts["Reviewing"] ?? 0
+    } · Mastered ${counts["Mastered"] ?? 0} · ${dueNow} due now · ${reviewRowCount} card_reviews\n`
+  );
+}
+
 async function main(): Promise<void> {
+  if (DRY_RUN) {
+    dryRun();
+    return;
+  }
+
   console.log(`\n🦉 Seeding the Hootly demo account into ${SUPABASE_URL}\n`);
 
   // ── idempotency: delete then rebuild ────────────────────────────────────
   const existing = await findDemoUserId();
   if (existing) {
     console.log(`· Found an existing ${DEMO_EMAIL} — deleting it (cascades every row).`);
-    const { error } = await db.auth.admin.deleteUser(existing);
+    const { error } = await db().auth.admin.deleteUser(existing);
     assertOk("deleteUser", error);
   }
 
   // ── auth user → handle_new_user() trigger → profile + free subscription ──
-  const { data: created, error: createError } = await db.auth.admin.createUser({
+  const { data: created, error: createError } = await db().auth.admin.createUser({
     email: DEMO_EMAIL,
     password: DEMO_PASSWORD,
     email_confirm: true,
@@ -607,20 +669,20 @@ async function main(): Promise<void> {
 
   // The trigger should have made these; be explicit so a project missing the
   // trigger still seeds cleanly rather than failing on a foreign key.
-  const { data: profileRow } = await db.from("profiles").select("id").eq("id", userId).maybeSingle();
+  const { data: profileRow } = await db().from("profiles").select("id").eq("id", userId).maybeSingle();
   if (!profileRow) {
     assertOk(
       "profiles insert",
-      (await db.from("profiles").insert({ id: userId, email: DEMO_EMAIL, is_edu: false })).error
+      (await db().from("profiles").insert({ id: userId, email: DEMO_EMAIL, is_edu: false })).error
     );
-    assertOk("subscriptions insert", (await db.from("subscriptions").insert({ user_id: userId })).error);
+    assertOk("subscriptions insert", (await db().from("subscriptions").insert({ user_id: userId })).error);
     console.log("  (handle_new_user trigger absent — inserted profile + free subscription directly)");
   }
 
   assertOk(
     "profiles update",
     (
-      await db
+      await db()
         .from("profiles")
         .update({
           display_name: DEMO_NAME,
@@ -635,7 +697,7 @@ async function main(): Promise<void> {
   console.log("✓ Profile: college · student · onboarding complete");
 
   // ── course ──────────────────────────────────────────────────────────────
-  const { data: course, error: courseError } = await db
+  const { data: course, error: courseError } = await db()
     .from("courses")
     .insert({
       user_id: userId,
@@ -652,7 +714,7 @@ async function main(): Promise<void> {
   console.log(`✓ Course "${course.name}" · exam ${course.exam_date} (21 days out)`);
 
   // ── material + chunks ───────────────────────────────────────────────────
-  const { data: material, error: materialError } = await db
+  const { data: material, error: materialError } = await db()
     .from("materials")
     .insert({
       course_id: courseId,
@@ -670,7 +732,7 @@ async function main(): Promise<void> {
   const materialId = material.id as string;
 
   const embeddings = await embedChunks(CHUNK_TEXTS);
-  const { data: chunkRows, error: chunkError } = await db
+  const { data: chunkRows, error: chunkError } = await db()
     .from("chunks")
     .insert(
       CHUNK_TEXTS.map((content, idx) => ({
@@ -705,7 +767,7 @@ async function main(): Promise<void> {
   );
 
   // ── note + sections ─────────────────────────────────────────────────────
-  const { data: note, error: noteError } = await db
+  const { data: note, error: noteError } = await db()
     .from("notes")
     .insert({
       course_id: courseId,
@@ -724,7 +786,7 @@ async function main(): Promise<void> {
   assertOk(
     "note_sections insert",
     (
-      await db.from("note_sections").insert(
+      await db().from("note_sections").insert(
         NOTE_SECTIONS.map((section, idx) => ({
           note_id: noteId,
           user_id: userId,
@@ -740,9 +802,12 @@ async function main(): Promise<void> {
   console.log(`✓ Note "Unit 3 — Metabolism" · ${NOTE_SECTIONS.length} cited sections`);
 
   // ── flashcards + card_reviews ───────────────────────────────────────────
-  const simulated = CARD_SPECS.map((spec) => ({ spec, sim: simulate(spec.state, spec.dueInDays) }));
+  const simulated = CARD_SPECS.map((spec) => ({
+    spec,
+    sim: simulate(spec.state, spec.dueInDays, spec.depth ?? 0),
+  }));
 
-  const { data: cardRows, error: cardError } = await db
+  const { data: cardRows, error: cardError } = await db()
     .from("flashcards")
     .insert(
       simulated.map(({ spec, sim }) => ({
@@ -775,7 +840,7 @@ async function main(): Promise<void> {
     }));
   });
   if (reviewRows.length > 0) {
-    assertOk("card_reviews insert", (await db.from("card_reviews").insert(reviewRows)).error);
+    assertOk("card_reviews insert", (await db().from("card_reviews").insert(reviewRows)).error);
   }
 
   const stateCounts = simulated.reduce<Record<string, number>>((acc, { sim }) => {
@@ -791,7 +856,7 @@ async function main(): Promise<void> {
   );
 
   // ── quiz + questions + completed attempt ────────────────────────────────
-  const { data: quiz, error: quizError } = await db
+  const { data: quiz, error: quizError } = await db()
     .from("quizzes")
     .insert({
       course_id: courseId,
@@ -808,7 +873,7 @@ async function main(): Promise<void> {
   if (!quiz) throw new Error("quiz insert returned no row");
   const quizId = quiz.id as string;
 
-  const { data: questionRows, error: questionError } = await db
+  const { data: questionRows, error: questionError } = await db()
     .from("quiz_questions")
     .insert(
       QUESTION_SPECS.map((q, idx) => ({
@@ -834,7 +899,7 @@ async function main(): Promise<void> {
   const correctCount = QUESTION_SPECS.filter((q) => q.given === q.answer).length;
   const scorePct = Math.round((correctCount / QUESTION_SPECS.length) * 100);
 
-  const { data: attempt, error: attemptError } = await db
+  const { data: attempt, error: attemptError } = await db()
     .from("quiz_attempts")
     .insert({
       quiz_id: quizId,
@@ -852,7 +917,7 @@ async function main(): Promise<void> {
   assertOk(
     "attempt_answers insert",
     (
-      await db.from("attempt_answers").insert(
+      await db().from("attempt_answers").insert(
         QUESTION_SPECS.flatMap((q, idx) => {
           const questionId = questionIds[idx];
           if (!questionId) return [];
@@ -876,7 +941,7 @@ async function main(): Promise<void> {
   );
 
   // ── tutor thread ────────────────────────────────────────────────────────
-  const { data: thread, error: threadError } = await db
+  const { data: thread, error: threadError } = await db()
     .from("chat_threads")
     .insert({
       course_id: courseId,
@@ -893,7 +958,7 @@ async function main(): Promise<void> {
   assertOk(
     "chat_messages insert",
     (
-      await db.from("chat_messages").insert([
+      await db().from("chat_messages").insert([
         {
           thread_id: thread.id as string,
           user_id: userId,
@@ -959,7 +1024,7 @@ async function main(): Promise<void> {
   assertOk(
     "study_plan_items insert",
     (
-      await db.from("study_plan_items").insert(
+      await db().from("study_plan_items").insert(
         PLAN_SPECS.map((item, idx) => ({
           course_id: courseId,
           user_id: userId,
@@ -987,7 +1052,7 @@ async function main(): Promise<void> {
   assertOk(
     "usage_counters insert",
     (
-      await db.from("usage_counters").insert([
+      await db().from("usage_counters").insert([
         { user_id: userId, metric: "uploads", period_start: "1970-01-01", count: 1 },
         { user_id: userId, metric: "cards_generated", period_start: "1970-01-01", count: CARD_SPECS.length },
         { user_id: userId, metric: "quizzes_generated", period_start: "1970-01-01", count: 1 },

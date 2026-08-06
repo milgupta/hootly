@@ -93,8 +93,11 @@ export function HomeDashboard({
         setNewCourseOpen(false);
         router.push(`/courses/${res.data.courseId}?tab=materials&add=1`);
       } else if (res.code === "limit_reached") {
+        // limit_hit opens the paywall in place — never a dead end (docs/00 rule 1).
         setNewCourseOpen(false);
-        router.push("/settings?tab=billing&paywall=limit:courses");
+        window.dispatchEvent(
+          new CustomEvent("hootly:paywall", { detail: { context: "limit:courses" } })
+        );
       } else {
         toast(res.error ?? "Something went wrong.", { kind: "error" });
       }
@@ -254,7 +257,9 @@ export function HomeDashboard({
             <button
               onClick={() =>
                 atCourseLimit
-                  ? router.push("/settings?tab=billing&paywall=limit:courses")
+                  ? window.dispatchEvent(
+                      new CustomEvent("hootly:paywall", { detail: { context: "limit:courses" } })
+                    )
                   : setNewCourseOpen(true)
               }
               className="focus-ring flex min-h-[132px] flex-col items-center justify-center gap-2 rounded-card border border-dashed border-border bg-bg text-ink-2 transition-all duration-150 hover:border-primary-border hover:text-primary"

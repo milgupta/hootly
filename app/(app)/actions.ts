@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { LIMITS } from "@/lib/billing/limits";
 import { getPlan, getUsage } from "@/lib/data";
 import { suggestCourseEmoji } from "@/lib/ai/emoji";
+import { capturePostHog } from "@/lib/analytics/server";
 
 export interface ActionResult<T = undefined> {
   ok: boolean;
@@ -47,6 +48,7 @@ export async function createCourse(input: {
   const plan = await getPlan(user.id);
   const liveCourses = await getUsage(user.id, "courses");
   if (liveCourses >= LIMITS[plan].courses) {
+    await capturePostHog(user.id, "limit_hit", { metric: "courses" });
     return { ok: false, code: "limit_reached", error: "Course limit reached." };
   }
 

@@ -48,11 +48,14 @@ Unit suite, AI eval harness, Playwright smoke, seed script, accessibility sweep,
 
 ## 2. Test results
 
-**Vitest — 179 tests green** across limits, FSRS, zod schemas, guardrail routing, RAG chunking/citation resolution, and parsers. The webhook-idempotency and AI-eval suites landed alongside; run `npm test` for the current count.
+**`npm test` — 266 passed, 1 skipped** (the skip is the live-API eval block, which activates the moment `OPENAI_API_KEY` exists).
 
-**AI eval harness** (`tests/ai/`) ships three hand-written public-domain fixtures with expected-property files and implements the five doc 06 §8 checks. It runs offline today against recorded fixtures and switches to live API calls automatically when `OPENAI_API_KEY` is present.
+- **199 unit tests** across limits (the doc 04 §5 table and its live-vs-lifetime-vs-monthly semantics), the FSRS wrapper (full column round-trip, rating monotonicity, mastery mapping), every zod schema, guardrail routing, RAG chunking and citation resolution, parsers, and webhook idempotency. The webhook test proves the `stripe_events` insert is the *first* operation and that a replay performs **zero** further writes — no subscription update, no Stripe call, no dunning email.
+- **68 AI eval tests** implementing all five doc 06 §8 checks against three hand-written public-domain fixtures (biology, US history, calculus) with expected-property files: schema validity 100%, citation coverage ≥95%, answer-key first-try pass rate 93%, guardrail routing 20/20 red-team prompts, fill-blank leaks 0. The harness has self-checks that feed deliberately broken artifacts through every metric and assert each one *fails*, and the golden set is deliberately imperfect so no metric reads a meaningless 100%.
 
-**Playwright** (`tests/e2e/smoke.spec.ts`) is split honestly: the always-on section really runs today (marketing, pricing limits, legal, auth screens, the unauthenticated redirect, 404, keyboard focus), and the full signup→checkout→refund journey is written completely but skips loudly while keys are missing.
+**Playwright — 13 passed, 7 skipped.** The always-on half really runs today: landing hero and trust band, the published pricing limits and both price points, the billing FAQ's cancel answer, all three legal pages, both auth screens with live `.edu` detection, the unauthenticated redirect, 404 copy, and two keyboard passes asserting a real visible focus ring. The full signup→onboard→upload→generate→review→quiz→paywall→checkout→cancel→refund journey is written completely and skips with the missing keys **named in each skip title**, so a skip can never be mistaken for a pass.
+
+**Seed:** `npm run seed` builds `demo@hootly.app` with one fully populated course. Flashcard FSRS state is replayed through the real `lib/fsrs.ts` rather than hand-faked, producing a genuine spread (12 Learning / 7 Reviewing / 6 Mastered, 13 due now).
 
 **Build:** `npm run build` clean, 23 routes, strict TS with no errors.
 
@@ -65,6 +68,10 @@ Unit suite, AI eval harness, Playwright smoke, seed script, accessibility sweep,
 3. **`humanInterval` collapsed every sub-hour interval to `<10m`.** A 45-minute FSRS interval rendered as `<10m` on the rating bar — actively misleading. Now only genuinely sub-10-minute steps get that label.
 4. **Client components imported from a `server-only` module.** `Markdown` and `CitedMarkdown` pulled the chunk-marker helpers out of `lib/ai/rag.ts`, which fails the build. The pure helpers moved to `lib/ai/chunk-markers.ts`.
 5. **Ten routes shipped without an error boundary and six without a skeleton** — a ship-gate item 10 failure. All now have both, with skeletons hand-matched to their final layout so nothing shifts.
+6. **RAG chunk overlap silently didn't happen on real documents.** `chunkBlocks` only carried overlap paragraphs that fitted inside the 120-token budget, so any document with paragraphs over ~90 words — i.e. every realistic textbook — got **zero** overlap, degrading retrieval at chunk boundaries. It now always carries at least the final paragraph.
+7. **Hitting the course limit dead-ended on Settings.** The dashboard pushed `/settings?tab=billing&paywall=limit:courses`, but nothing read that param — so a free user at their course limit landed on a billing page with no modal and no explanation, breaking the "`limit_hit` opens the paywall, never an error" rule. It now dispatches the paywall event in place, and the action captures the missing `limit_hit` event.
+8. **The self-serve refund gave no confirmation.** `/api/refund` redirected with `?refunded=1` and nothing surfaced it. Settings now confirms the refund with the amount timing.
+9. **The offline banner was mounted twice** on marketing pages (root layout + marketing layout), which would stack two banners. Now mounted once, at the root, covering every route.
 
 ---
 

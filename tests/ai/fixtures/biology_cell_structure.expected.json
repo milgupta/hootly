@@ -33,6 +33,13 @@
     "the plasma membrane is freely permeable to all molecules",
     "dna is stored in the ribosome"
   ],
+  "must_not_appear_patterns": [
+    "golgi[^.?!]{0,60}\\b(produces?|generates?|synthesi[sz]es)\\b[^.?!]{0,20}\\bATP\\b",
+    "\\bchloroplasts?\\b[^.?!]{0,50}\\banimal cells?\\b",
+    "\\bmitochondri\\w+\\b[^.?!]{0,40}\\bsingle membrane\\b",
+    "\\blysosomes?\\b[^.?!]{0,60}\\bpH\\b[^.?!]{0,25}\\b(nine|9)\\b",
+    "\\bribosomes?\\b[^.?!]{0,40}\\bdouble membrane\\b"
+  ],
   "thresholds": {
     "schema_validity": 1.0,
     "citation_coverage": 0.95,

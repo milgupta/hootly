@@ -31,6 +31,13 @@
     "the declaration was ratified by the states in 1781",
     "john locke wrote the second treatise of government in 1776"
   ],
+  "must_not_appear_patterns": [
+    "\\bthomas paine\\b[^.?!]{0,40}\\bwrote the declaration\\b",
+    "\\bdeclaration\\b[^.?!]{0,60}\\bthree branches\\b",
+    "\\btwelve grievances\\b",
+    "\\baddressed to parliament\\b",
+    "\\bfifty-six\\b[^.?!]{0,60}\\b(4 july|july 4)\\b"
+  ],
   "thresholds": {
     "schema_validity": 1.0,
     "citation_coverage": 0.95,

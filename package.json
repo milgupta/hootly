@@ -9,6 +9,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:watch": "vitest",
     "test:e2e": "playwright test",
     "stripe:setup": "tsx scripts/stripe-setup.ts",
     "seed": "tsx scripts/seed.ts",

@@ -1,0 +1,183 @@
+{
+  "_comment": "Deterministic recorded model output for the calculus golden-set chapter. Chunk prefixes are the first 8 hex chars of the deterministic chunk uuids built in tests/ai/helpers.ts (ca1c0000..ca1c000N).",
+  "notes_outline": {
+    "sections": [
+      { "heading": "What a Limit Is", "covers_chunk_ids": ["ca1c0000"] },
+      { "heading": "Computing Limits", "covers_chunk_ids": ["ca1c0001"] },
+      { "heading": "Continuity", "covers_chunk_ids": ["ca1c0001", "ca1c0002"] },
+      { "heading": "The Derivative", "covers_chunk_ids": ["ca1c0002"] },
+      { "heading": "Differentiation Rules and Their Uses", "covers_chunk_ids": ["ca1c0002", "ca1c0003"] }
+    ]
+  },
+  "note_sections": [
+    {
+      "heading": "What a Limit Is",
+      "body_md": "### Why limits come first\n\nCalculus answers two questions algebra cannot: the rate at which a quantity changes at a single instant, and how to add infinitely many infinitely small pieces to a finite total [chunk:ca1c0000]. Both run into the same obstacle, because the natural formula involves dividing by zero [chunk:ca1c0000]. The **limit** gets around it by asking what value an expression approaches rather than what value it takes [chunk:ca1c0000].\n\n### The definition\n\nThe limit of $f(x)$ as $x$ approaches $a$ equals $L$ when the values of $f(x)$ can be made as close to $L$ as we like by taking $x$ sufficiently close to $a$ but not equal to $a$ [chunk:ca1c0000]. The exclusion of the point itself is essential: a function may be undefined at $a$ and still have a perfectly good limit there [chunk:ca1c0000]. In the formal version, **epsilon** is the tolerance demanded on the output and **delta** is the closeness on the input that achieves it [chunk:ca1c0000].\n\n### One-sided limits\n\nThe left-hand limit considers only values below $a$ and the right-hand limit only values above it [chunk:ca1c0000]. A two-sided limit exists precisely when both one-sided limits exist and are equal, so exhibiting two disagreeing one-sided limits is the standard way to prove a limit does not exist [chunk:ca1c0000].",
+      "source_chunk_ids": ["ca1c0000"]
+    },
+    {
+      "heading": "Computing Limits",
+      "body_md": "### Direct substitution\n\nFor a polynomial or a rational function whose domain contains $a$, the limit as $x$ approaches $a$ is simply $f(a)$, which is the definition of continuity at a point [chunk:ca1c0001].\n\n### Indeterminate forms\n\nWhen substitution yields the indeterminate form zero over zero the expression must be rewritten first [chunk:ca1c0001]. **Factoring and cancelling** removes the common factor causing the vanishing denominator, **multiplying by a conjugate** clears a difference of square roots, and simplifying a compound fraction clears nested denominators [chunk:ca1c0001]. Each rewrite agrees with the original everywhere except at $a$ itself, and since the limit ignores the value at $a$ the two expressions share a limit [chunk:ca1c0001].\n\n### Squeeze theorem and the special limits\n\nThe **Squeeze Theorem** says a function trapped between two others that approach the same limit must approach it too [chunk:ca1c0001]. Two limits are worth memorising: $\\lim_{x\\to0}\\frac{\\sin x}{x}=1$ and $\\lim_{x\\to0}\\frac{1-\\cos x}{x}=0$ [chunk:ca1c0001]. Both hold for $x$ in radians and are false in degrees [chunk:ca1c0001].",
+      "source_chunk_ids": ["ca1c0001"]
+    },
+    {
+      "heading": "Continuity",
+      "body_md": "### Three conditions\n\nA function is continuous at a point when it is defined there, the limit exists there, and the limit equals the function value [chunk:ca1c0001]. Failing any one produces a discontinuity [chunk:ca1c0001].\n\n### Three kinds of failure\n\nA **removable** discontinuity has a limit that does not match the value, a **jump** discontinuity has one-sided limits that disagree, and an **infinite** discontinuity has a function growing without bound near the point [chunk:ca1c0001].\n\n### The Intermediate Value Theorem\n\nA function continuous on a closed interval takes every value between its endpoint values somewhere inside the interval [chunk:ca1c0001]. This is the standard tool for proving an equation has a solution without finding it: show continuity, show a sign change between the endpoints, and a root must lie between them [chunk:ca1c0001].",
+      "source_chunk_ids": ["ca1c0001"]
+    },
+    {
+      "heading": "The Derivative",
+      "body_md": "### Definition and interpretations\n\nThe derivative of $f$ at $a$ is the limit of the **difference quotient** as the change in input approaches zero [chunk:ca1c0002]. Geometrically it is the slope of the tangent line, obtained as the limiting position of secant lines through nearby points [chunk:ca1c0002]. Physically, if the function gives position against time, the derivative gives velocity at an instant [chunk:ca1c0002].\n\n### Differentiability versus continuity\n\nDifferentiability is strictly stronger than continuity: every differentiable function is continuous, because a jump in value would make the difference quotient blow up [chunk:ca1c0002]. The converse fails — the absolute value function is continuous at zero but not differentiable there, since the difference quotient approaches $-1$ from the left and $+1$ from the right [chunk:ca1c0002]. Corners, cusps and vertical tangents are the three standard ways a continuous function fails to be differentiable [chunk:ca1c0002].\n\n### The derivative as a function\n\nTreating the derivative as a function in its own right is what makes the subject computational, and its domain consists of exactly those points where the original function is differentiable [chunk:ca1c0002].",
+      "source_chunk_ids": ["ca1c0002"]
+    },
+    {
+      "heading": "Differentiation Rules and Their Uses",
+      "body_md": "### The core rules\n\nThe **power rule** gives the derivative of $x^n$ as $nx^{n-1}$, and it holds for every real exponent, not only positive integers [chunk:ca1c0002]. The derivative of a constant is zero, matching the fact that a horizontal line has slope zero everywhere [chunk:ca1c0002]. Differentiation is linear, so the derivative of a sum is the sum of the derivatives and a constant multiplier passes straight through [chunk:ca1c0002].\n\n### Products, quotients, compositions\n\nThe **product rule** gives the first function times the derivative of the second plus the second times the derivative of the first [chunk:ca1c0002]. Assuming the derivative of a product is the product of the derivatives is the most common first-course error, and checking $x\\cdot x$, whose derivative is $2x$ rather than $1$, settles it [chunk:ca1c0002]. The **quotient rule** is the denominator times the derivative of the numerator minus the numerator times the derivative of the denominator, all over the square of the denominator, and the order matters because subtraction is not commutative [chunk:ca1c0003]. The **chain rule** gives the derivative of the outer function evaluated at the inner function, multiplied by the derivative of the inner function [chunk:ca1c0003].\n\n### Reading the derivatives\n\nWhere the first derivative is positive the function rises and where it is negative it falls, so points at which it is zero or undefined are the **critical points** and the only interior candidates for a local extremum [chunk:ca1c0003]. The second derivative reports concavity, positive for a bowl and negative for a dome, with an **inflection point** where concavity changes [chunk:ca1c0003]. In related-rate problems you differentiate with respect to time before substituting values, because substituting first freezes a changing quantity into a constant.",
+      "source_chunk_ids": ["ca1c0002", "ca1c0003"]
+    }
+  ],
+  "cards": {
+    "cards": [
+      { "kind": "basic", "front": "Why must the definition of a limit exclude the point x = a itself?", "back": "The limit describes behaviour near the point and is indifferent to the value there; a function can be undefined at a and still have a limit.", "source_chunk_ids": ["ca1c0000"] },
+      { "kind": "cloze", "front": "In the formal definition, {{c1::epsilon}} is the tolerance demanded on the output and delta is the closeness required on the input.", "back": "epsilon", "source_chunk_ids": ["ca1c0000"] },
+      { "kind": "basic", "front": "When does a two-sided limit exist?", "back": "Exactly when both one-sided limits exist and are equal to each other.", "source_chunk_ids": ["ca1c0000"] },
+      { "kind": "basic", "front": "Name the three techniques for resolving a 0/0 indeterminate form.", "back": "Factor and cancel, multiply by a conjugate, or simplify a compound fraction.", "source_chunk_ids": ["ca1c0001"] },
+      { "kind": "reversed", "front": "Intermediate Value Theorem", "back": "A function continuous on a closed interval takes every value between its endpoint values somewhere inside the interval.", "source_chunk_ids": ["ca1c0001"] },
+      { "kind": "basic", "front": "Is every continuous function differentiable?", "back": "No. Differentiability implies continuity, but not the reverse — the absolute value function is continuous at 0 and not differentiable there.", "source_chunk_ids": ["ca1c0002"] },
+      { "kind": "cloze", "front": "The derivative of x^n is {{c1::n·x^(n-1)}}, for every real exponent n.", "back": "n·x^(n-1)", "source_chunk_ids": ["ca1c0002"] },
+      { "kind": "basic", "front": "State the chain rule.", "back": "The derivative of a composite is the derivative of the outer function evaluated at the inner function, times the derivative of the inner function.", "source_chunk_ids": ["ca1c0003"] },
+      { "kind": "basic", "front": "What does the sign of the second derivative tell you?", "back": "Concavity: positive curves upward like a bowl, negative curves downward like a dome, and a change of sign marks an inflection point.", "source_chunk_ids": ["ca1c0003"] }
+    ]
+  },
+  "quiz": {
+    "title": "Limits and Derivatives — Quiz",
+    "questions": [
+      {
+        "qtype": "mcq",
+        "topic": "What a Limit Is",
+        "prompt": "A function f is undefined at x = 2. What follows about the limit of f as x approaches 2?",
+        "options": ["The limit cannot exist", "The limit must equal zero", "The limit may still exist, because it depends only on nearby values", "The limit equals f(2) by definition"],
+        "answer": "The limit may still exist, because it depends only on nearby values",
+        "explanation": "The definition takes x close to a but not equal to a, so the value at the point is irrelevant to the limit [chunk:ca1c0000].",
+        "source_chunk_ids": ["ca1c0000"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "mcq",
+        "topic": "What a Limit Is",
+        "prompt": "The left-hand limit of a function at x = 0 is -1 and the right-hand limit is +1. What can you conclude?",
+        "options": ["The two-sided limit is 0", "The two-sided limit does not exist", "The function is differentiable at 0", "The function is continuous at 0"],
+        "answer": "The two-sided limit does not exist",
+        "explanation": "A two-sided limit exists precisely when both one-sided limits exist and agree, and these disagree [chunk:ca1c0000].",
+        "source_chunk_ids": ["ca1c0000"],
+        "difficulty": 1
+      },
+      {
+        "qtype": "mcq",
+        "topic": "Computing Limits",
+        "prompt": "Which technique is the standard first move when a limit produces a difference of square roots?",
+        "options": ["Multiply by the conjugate", "Apply the Squeeze Theorem", "Convert the angle to degrees", "Differentiate the numerator"],
+        "answer": "Multiply by the conjugate",
+        "explanation": "Multiplying by a conjugate clears a difference of square roots so the vanishing factor can be cancelled [chunk:ca1c0001].",
+        "source_chunk_ids": ["ca1c0001"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "mcq",
+        "topic": "The Derivative",
+        "prompt": "Which relationship between continuity and differentiability is correct?",
+        "options": ["Continuity implies differentiability", "Differentiability implies continuity", "Neither implies the other", "They are equivalent conditions"],
+        "answer": "Differentiability implies continuity",
+        "explanation": "Every differentiable function is continuous, but the absolute value function shows the converse fails at a corner [chunk:ca1c0002].",
+        "source_chunk_ids": ["ca1c0002"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "true_false",
+        "topic": "Differentiation Rules and Their Uses",
+        "prompt": "The derivative of a product of two functions equals the product of their derivatives.",
+        "options": ["True", "False"],
+        "answer": "False",
+        "explanation": "The product rule gives the first times the derivative of the second plus the second times the derivative of the first; checking x times x, whose derivative is 2x, disproves the shortcut [chunk:ca1c0002].",
+        "source_chunk_ids": ["ca1c0002"],
+        "difficulty": 1
+      },
+      {
+        "qtype": "true_false",
+        "topic": "Computing Limits",
+        "prompt": "The special limits involving sine and cosine at zero hold only when the angle is measured in radians.",
+        "options": ["True", "False"],
+        "answer": "True",
+        "explanation": "Both special limits are stated for radians and are false if degrees are used [chunk:ca1c0001].",
+        "source_chunk_ids": ["ca1c0001"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "fill_blank",
+        "topic": "Continuity",
+        "prompt": "A discontinuity where the one-sided limits exist but disagree is called a ______ discontinuity.",
+        "answer": "jump",
+        "explanation": "The chapter names three kinds of failure, and this one is defined by disagreeing one-sided limits [chunk:ca1c0001].",
+        "source_chunk_ids": ["ca1c0001"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "fill_blank",
+        "topic": "Differentiation Rules and Their Uses",
+        "prompt": "Points where the first derivative is zero or undefined are called ______ points, and they are the only interior candidates for a local extremum.",
+        "answer": "critical",
+        "explanation": "These are the only interior candidates for a local maximum or minimum [chunk:ca1c0003].",
+        "source_chunk_ids": ["ca1c0003"],
+        "difficulty": 2
+      },
+      {
+        "qtype": "short_answer",
+        "topic": "The Derivative",
+        "prompt": "Give the three standard ways a continuous function can fail to be differentiable at a point.",
+        "answer": "Corners, cusps, and vertical tangents.",
+        "explanation": "The chapter lists exactly these three failure modes [chunk:ca1c0002].",
+        "source_chunk_ids": ["ca1c0002"],
+        "difficulty": 3
+      },
+      {
+        "qtype": "short_answer",
+        "topic": "Differentiation Rules and Their Uses",
+        "prompt": "In a related-rate problem, why must you differentiate with respect to time before substituting numerical values?",
+        "answer": "Substituting first freezes a changing quantity into a constant, so its rate of change is lost.",
+        "explanation": "The chapter names this as a frequent and costly mistake for exactly that reason [chunk:ca1c0003].",
+        "source_chunk_ids": ["ca1c0003"],
+        "difficulty": 3
+      }
+    ]
+  },
+  "plan": {
+    "items": [
+      { "idx": 0, "title": "Read: What a Limit Is", "kind": "read_note", "topic": "What a Limit Is", "due_date": "2026-08-07" },
+      { "idx": 1, "title": "Read: Computing Limits", "kind": "read_note", "topic": "Computing Limits", "due_date": "2026-08-08" },
+      { "idx": 2, "title": "Review 25 cards", "kind": "review_cards", "topic": "Limits", "due_date": "2026-08-09" },
+      { "idx": 3, "title": "Quiz: limits and continuity", "kind": "take_quiz", "topic": "Continuity", "due_date": "2026-08-10" },
+      { "idx": 4, "title": "Read: The Derivative", "kind": "read_note", "topic": "The Derivative", "due_date": "2026-08-11" },
+      { "idx": 5, "title": "Read: Differentiation Rules and Their Uses", "kind": "read_note", "topic": "Differentiation Rules and Their Uses", "due_date": "2026-08-12" },
+      { "idx": 6, "title": "Practice exam: chapter 2", "kind": "take_exam", "topic": "Limits and Derivatives", "due_date": "2026-08-14" }
+    ]
+  },
+  "groundedness": [
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 1 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 0.98 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 1 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": true }], "overall_supported_pct": 0.96 },
+    { "verdicts": [{ "sentence_idx": 0, "supported": true }, { "sentence_idx": 1, "supported": false }], "overall_supported_pct": 0.9 }
+  ],
+  "answer_key_verdicts": [
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The sources state the limit ignores the value at the point." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Disagreeing one-sided limits mean no two-sided limit." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The conjugate technique is named for exactly this case." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Only one option matches the stated one-way implication." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The sources explicitly flag the product-of-derivatives shortcut as wrong." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The radians caveat is stated in the sources." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Answer absent from the prompt and uniquely determined by the definition." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "Answer absent from the prompt and uniquely determined." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The three failure modes are listed verbatim in the sources." },
+    { "correct": true, "well_formed": true, "explanation_ok": true, "reason": "The reason given matches the sources." }
+  ]
+}
