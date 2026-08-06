@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   },
   description:
     "Upload your slides, notes, or lectures. Hootly builds your notes, flashcards, quizzes, and a tutor that cites its sources — in about a minute.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
   icons: { icon: "/favicon.svg" },
   openGraph: {
     title: "Hootly — The AI study platform students actually trust",
     description:
       "Notes, flashcards, quizzes, and a tutor that cites its sources — built from your own course materials.",
-    images: ["/og.png"],
   },
 };
 
