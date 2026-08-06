@@ -376,6 +376,7 @@ export function CardsManager({
             <Meter
               used={Math.min(cardsGenerated, cardsLimit)}
               limit={cardsLimit}
+              metric="cards_generated"
               showLabel={false}
             />
             <p
@@ -690,6 +691,7 @@ export function CardsManager({
               <Meter
                 used={Math.min(cardsGenerated, cardsLimit)}
                 limit={cardsLimit}
+                metric="cards_generated"
                 showLabel={false}
               />
               <p className="text-small mt-1.5 text-ink-2 tabular-nums">

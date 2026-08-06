@@ -83,7 +83,10 @@ export function previewIntervals(row: FsrsColumns, now = new Date()): Record<Rev
 
 export function humanInterval(ms: number): string {
   const minutes = Math.round(ms / 60_000);
-  if (minutes < 60) return `<${Math.max(minutes, 1) === 1 ? 10 : minutes}m`;
+  // Sub-10-minute steps all render as "<10m" (docs/05 §7.3 rating-bar copy);
+  // anything longer gets its real magnitude — never "<30m".
+  if (minutes < 10) return "<10m";
+  if (minutes < 60) return `${minutes}m`;
   const hours = Math.round(minutes / 60);
   if (hours < 24) return `${hours}h`;
   const days = Math.round(hours / 24);

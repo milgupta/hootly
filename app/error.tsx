@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { OllieAnimated } from "@/components/ollie/OllieAnimated";
+import { ErrorTracker } from "@/components/analytics/ErrorTracker";
 
 /**
  * 500 — copy verbatim from docs/05 §11. Two recovery actions: "Refresh" (retries the
@@ -22,6 +23,7 @@ export default function GlobalError({
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-bg px-4">
+      <ErrorTracker errorCode="unhandled_error" />
       <div className="flex flex-col items-center text-center">
         {/* Hero glow sits behind the art only — never under text (docs/03 §1). */}
         <div className="relative flex justify-center">

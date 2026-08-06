@@ -102,7 +102,7 @@ export function Sidebar({
             <p className="text-small mb-1.5 font-medium text-ink">
               Free plan — {uploadsUsed}/{uploadsLimit} uploads used
             </p>
-            <Meter used={uploadsUsed} limit={uploadsLimit} showLabel={false} />
+            <Meter used={uploadsUsed} limit={uploadsLimit} metric="uploads" showLabel={false} />
             <Link
               href="/settings?tab=billing"
               className="focus-ring text-small mt-2 inline-block rounded font-semibold text-primary hover:text-primary-hover"

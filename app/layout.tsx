@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/ui/Toast";
+import { PostHogProvider } from "@/lib/analytics/posthog";
+import { OfflineBanner } from "@/components/OfflineBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,7 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="bg-bg text-ink">
-        <ToastProvider>{children}</ToastProvider>
+        <PostHogProvider>
+          <ToastProvider>
+            <OfflineBanner />
+            {children}
+          </ToastProvider>
+        </PostHogProvider>
       </body>
     </html>
   );

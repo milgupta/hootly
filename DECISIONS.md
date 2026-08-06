@@ -44,3 +44,7 @@
 - Exam submit confirm with zero unanswered uses "Submit your exam?" (docs/05 §7.5 only specifies the unanswered-count copy); the timer auto-submits at 0:00 with a warning toast rather than discarding the attempt.
 - Quiz/exam per-topic breakdown groups questions with a null topic under "General" and orders topics worst-first (the weakest topic is the reason the breakdown exists).
 - The generating state listens on the job:{courseId} realtime channel (the only quiz-related topic the 0001 broadcast policy authorizes) plus a 5s router.refresh fallback so a dropped socket still lands the user on their questions.
+- signup_completed is captured server-side in /auth/callback when the user's created_at and last_sign_in_at are within 10s of each other (first auth); method is read from app_metadata.provider.
+- limit_meter_viewed fires from the Meter component itself (once per mount) when it renders at ≤20% remaining, so every metered surface reports it without per-call-site wiring; decorative meters omit the `metric` prop and stay silent.
+- error_shown is emitted by a headless <ErrorTracker errorCode> component dropped into error surfaces (route error boundaries use "unhandled_error"; job/ingest surfaces pass their docs/04 §9 code); the imperative reportErrorShown() covers toast paths.
+- share_link_created / share_link_opened stay unwired: /s/[slug] sharing is P1 (docs/05 §7, 04 §7 "route reserved") and no shipped surface creates a link. The typed events exist so wiring is a one-liner when P1 lands.

@@ -196,7 +196,7 @@ export function SettingsScreen({
                           </span>
                         )}
                       </div>
-                      <Meter used={usage[metric]} limit={limit} />
+                      <Meter used={usage[metric]} limit={limit} metric={metric} />
                     </div>
                   );
                 })}

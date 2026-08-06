@@ -119,13 +119,12 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Ollie (idle blink) atop a stylized course-card mock */}
-          <div className="relative pt-12">
-            <div
-              className="gradient-hero-glow pointer-events-none absolute inset-x-[-15%] -top-16 h-[380px]"
-              aria-hidden
-            />
-            <div className="relative rounded-hero border border-border bg-surface p-5 shadow-md md:p-6">
+          {/* Ollie (idle blink) atop a stylized course-card mock.
+              The hero glow lives on the 24px art container and is bounded by it, so it
+              never runs under a paragraph — the mock itself is opaque white. */}
+          <div className="relative">
+            <div className="gradient-hero-glow rounded-hero px-4 pb-4 pt-20 md:px-6 md:pb-6">
+            <div className="rounded-card border border-border bg-surface p-5 shadow-xs md:p-6">
               <div className="flex items-center gap-3">
                 <span className="flex size-10 items-center justify-center rounded-ctl bg-primary-soft text-primary">
                   <BookOpen className="size-5" aria-hidden />
@@ -160,8 +159,9 @@ export default function LandingPage() {
                 </span>
               </div>
             </div>
-            <div className="absolute -top-1 left-1/2 -translate-x-1/2">
-              <OllieAnimated mode="idle" size={84} />
+            </div>
+            <div className="absolute left-1/2 top-0 -translate-x-1/2">
+              <OllieAnimated mode="idle" size={80} />
             </div>
           </div>
         </div>

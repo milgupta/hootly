@@ -7,12 +7,14 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { OllieAnimated } from "@/components/ollie/OllieAnimated";
+import { ErrorTracker } from "@/components/analytics/ErrorTracker";
 
 /** Error state with recovery (docs/03 §8.10, copy per docs/05 §11). */
 export default function CardsError({ reset }: { error: Error; reset: () => void }) {
   const params = useParams<{ courseId: string }>();
   return (
     <Card className="p-0">
+      <ErrorTracker errorCode="unhandled_error" />
       <EmptyState
         ollie={<OllieAnimated mode="concerned" size={72} />}
         message="Something broke on our end. Your data is safe — try refreshing."

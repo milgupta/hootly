@@ -387,7 +387,7 @@ export function UploadPanel({
       {/* Free meter footer — visible BEFORE the action (trust rule) */}
       {plan === "free" && (
         <div className="border-t border-border pt-3">
-          <Meter used={Math.min(localUsed, LIMITS.free.uploads)} limit={LIMITS.free.uploads} showLabel={false} />
+          <Meter used={Math.min(localUsed, LIMITS.free.uploads)} limit={LIMITS.free.uploads} metric="uploads" showLabel={false} />
           <p className={cn("text-small mt-1", remaining <= 1 ? "text-warning" : "text-ink-2")}>
             Uploads: {Math.min(localUsed, LIMITS.free.uploads)} of {LIMITS.free.uploads} free
           </p>
