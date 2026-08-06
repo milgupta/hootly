@@ -16,6 +16,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { useToast } from "@/components/ui/Toast";
 import { OllieAnimated } from "@/components/ollie/OllieAnimated";
 import { UploadPanel } from "@/components/upload/UploadPanel";
+import { FirstValueMoment } from "@/components/onboarding/FirstValueMoment";
 import { cn } from "@/lib/cn";
 import { masteryState } from "@/lib/types";
 import type { Course, Flashcard, Material, Note, Quiz, StudyPlanItem } from "@/lib/types";
@@ -48,6 +49,8 @@ export function CourseScreen({
   uploadsUsed,
   initialTab,
   autoOpenAdd,
+  firstValue,
+  warmupQuizId,
 }: {
   course: Course;
   materials: Material[];
@@ -59,6 +62,8 @@ export function CourseScreen({
   uploadsUsed: number;
   initialTab?: string;
   autoOpenAdd?: boolean;
+  firstValue?: boolean;
+  warmupQuizId?: string | null;
 }) {
   const router = useRouter();
   const { toast } = useToast();
@@ -141,6 +146,10 @@ export function CourseScreen({
 
   return (
     <div>
+      {firstValue && (
+        <FirstValueMoment courseId={course.id} warmupQuizId={warmupQuizId ?? null} />
+      )}
+
       {/* Header */}
       <div className="mb-5 flex flex-wrap items-center gap-3">
         <span className="text-[32px] leading-none" aria-hidden>{course.emoji}</span>

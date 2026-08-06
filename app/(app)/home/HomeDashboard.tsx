@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Lock, Plus } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -63,8 +63,10 @@ export function HomeDashboard({
   courseStats?: Record<string, { planTotal: number; planDone: number; cardsDue: number }>;
 }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { toast } = useToast();
   const [newCourseOpen, setNewCourseOpen] = React.useState(false);
+  const [upgraded, setUpgraded] = React.useState(false);
   const [courseName, setCourseName] = React.useState("");
   const [examDate, setExamDate] = React.useState("");
   const [pending, startTransition] = React.useTransition();
@@ -110,8 +112,23 @@ export function HomeDashboard({
     });
   }
 
+  // success_url=/home?upgraded=1 → success toast + Ollie sparkle (docs/07 §1.2)
+  React.useEffect(() => {
+    if (searchParams.get("upgraded") !== "1" || upgraded) return;
+    setUpgraded(true);
+    toast("You're on Plus. Everything's unlimited now.", { kind: "success" });
+    router.replace("/home", { scroll: false });
+    const t = window.setTimeout(() => setUpgraded(false), 3000);
+    return () => window.clearTimeout(t);
+  }, [searchParams, upgraded, toast, router]);
+
   return (
     <div>
+      {upgraded && (
+        <div className="pointer-events-none fixed inset-x-0 top-20 z-50 flex justify-center">
+          <OllieAnimated mode="success" size={96} />
+        </div>
+      )}
       <h1 className="text-h1">
         Good {greeting()}, {firstName}.
       </h1>

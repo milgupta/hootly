@@ -248,19 +248,6 @@ export function resolveCitations(ids: string[], map: Map<string, string>): strin
   return out;
 }
 
-/** Strip inline [chunk:ID] markers from markdown for rendering. */
-export function stripChunkMarkers(md: string): string {
-  return md.replace(/\s*\[chunk:[a-f0-9]{4,32}\]/gi, "");
-}
-
-/** Extract [chunk:ID] markers in order of appearance. */
-export function extractChunkMarkers(md: string): string[] {
-  const out: string[] = [];
-  const re = /\[chunk:([a-f0-9]{4,32})\]/gi;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(md))) {
-    const id = m[1]!.toLowerCase();
-    if (!out.includes(id)) out.push(id);
-  }
-  return out;
-}
+/** Marker helpers live in lib/ai/chunk-markers.ts (pure, client-safe) and are
+ *  re-exported here so server callers keep a single import site. */
+export { stripChunkMarkers, extractChunkMarkers } from "@/lib/ai/chunk-markers";

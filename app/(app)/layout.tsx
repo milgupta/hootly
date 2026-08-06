@@ -5,6 +5,9 @@ import { LIMITS } from "@/lib/billing/limits";
 import { Sidebar } from "@/components/shell/Sidebar";
 import { TopBar } from "@/components/shell/TopBar";
 import { MobileTabs } from "@/components/shell/MobileTabs";
+import { PaywallHost } from "@/components/billing/PaywallModal";
+import { AnalyticsIdentify } from "@/components/analytics/AnalyticsIdentify";
+import { RestoreAccountBanner } from "@/components/shell/RestoreAccountBanner";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const user = await getUser();
@@ -39,10 +42,20 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           courseNames={courseNames}
         />
         <main className="mx-auto max-w-[1200px] px-4 pb-24 pt-6 md:px-6 md:pb-10">
+          {profile?.deletion_requested_at && (
+            <RestoreAccountBanner deletionRequestedAt={profile.deletion_requested_at} />
+          )}
           {children}
         </main>
       </div>
       <MobileTabs firstCourseId={courses[0]?.id ?? null} />
+      <PaywallHost />
+      <AnalyticsIdentify
+        userId={user.id}
+        plan={plan}
+        studyLevel={profile?.study_level ?? null}
+        isEdu={profile?.is_edu ?? false}
+      />
     </div>
   );
 }

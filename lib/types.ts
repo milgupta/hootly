@@ -212,6 +212,52 @@ export interface AttemptAnswer {
   answered_at: string;
 }
 
+/** Quiz/exam engine payloads (docs/05 §7.4–7.5). The correct answer + why-explanation
+ *  + citations are ALWAYS part of an attempt's feedback — never hidden. */
+export interface AnswerFeedback {
+  questionId: string;
+  /** null = free-text answer the grader couldn't match — the learner self-assesses. */
+  isCorrect: boolean | null;
+  correctAnswer: string;
+  explanation: string;
+  citations: Citation[];
+}
+
+export interface QuestionResult extends AnswerFeedback {
+  idx: number;
+  qtype: QType;
+  topic: string | null;
+  prompt: string;
+  options: string[] | null;
+  given: string | null;
+  flagged: boolean;
+}
+
+export interface TopicResult {
+  topic: string;
+  correct: number;
+  total: number;
+}
+
+/** "{n} questions came from {material} — reread p.12–18" (docs/05 §7.5). */
+export interface MaterialInsight {
+  materialTitle: string;
+  questions: number;
+  pageFrom: number | null;
+  pageTo: number | null;
+}
+
+export interface AttemptResults {
+  attemptId: string;
+  scorePct: number;
+  correct: number;
+  total: number;
+  missesAddedToCards: number;
+  questions: QuestionResult[];
+  topics: TopicResult[];
+  insights: MaterialInsight[];
+}
+
 export interface ChatThread {
   id: string;
   course_id: string;

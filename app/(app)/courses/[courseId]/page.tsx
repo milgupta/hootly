@@ -10,12 +10,12 @@ export default async function CoursePage({
   searchParams,
 }: {
   params: Promise<{ courseId: string }>;
-  searchParams: Promise<{ tab?: string; add?: string }>;
+  searchParams: Promise<{ tab?: string; add?: string; firstvalue?: string; warmup?: string }>;
 }) {
   const user = await getUser();
   if (!user) redirect("/login");
   const { courseId } = await params;
-  const { tab, add } = await searchParams;
+  const { tab, add, firstvalue, warmup } = await searchParams;
 
   const supabase = await createClient();
   if (!supabase) notFound();
@@ -76,6 +76,8 @@ export default async function CoursePage({
       uploadsUsed={uploadsUsed}
       initialTab={tab}
       autoOpenAdd={add === "1"}
+      firstValue={firstvalue === "1"}
+      warmupQuizId={warmup ?? null}
     />
   );
 }
